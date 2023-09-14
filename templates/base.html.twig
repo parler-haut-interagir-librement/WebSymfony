@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+  <meta charset=utf-8>
+  <meta name="description" content="{{ "brand.info"|trans }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <title>{% block title %}{{ "brand.name"|trans }}{% endblock %}</title>
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🎶️</text></svg>">
+
+  {% block preconnect %}{% endblock %}
+
+  {% block stylesheets %}
+    {{ ux_controller_link_tags() }}
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
+  {% endblock %}
+
+  {% block javascripts %}
+    {{ importmap() }}
+  {% endblock %}
+</head>
+
+<body id="{% block id %}base{% endblock %}">
+
+<header>
+  <p>
+    <img width="42px" height="42px" alt="Phil Logo" src="https://ph-il.ca/img/phil_img_logo.svg"> {{ "brand.html"|trans|raw }}
+  </p>
+
+  <nav>
+    <ul>
+      <li><a href="{{ url("homepage") }}" title="{{ "menu.home.title"|trans }}">{{ "menu.home.text"|trans }}</a></li>
+      <li><a href="{{ url("app_stimulus") }}" title="{{ "menu.stimulus.title"|trans }}">{{ "menu.stimulus.text"|trans }}</a></li>
+      <li><a href="/404" title="{{ "menu.error.title"|trans }}">{{ "menu.error.text"|trans }}</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  {% block body %}{% endblock %}
+</main>
+
+<footer>
+  <p>{{ "brand.html"|trans|raw }}</p>
+
+  <div>
+    <div>
+      &copy; 2022-{{ "now"|date("Y") }} <a href="https://ph-il.ca" target="_blank">{{ "brand.copyright"|trans }}</a>;
+      {{ "footer.all_rights"|trans }}
+      <br />
+      {{ "footer.symfony"|trans|raw }}
+    </div>
+
+    <div>
+      <a href="https://github.com/parler-haut-interagir-librement/MicroSymfony" target="_blank"><img alt="GitHub" height="25px" width="25px"
+                                                                                 src="{{ asset('img/github.svg') }}"></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

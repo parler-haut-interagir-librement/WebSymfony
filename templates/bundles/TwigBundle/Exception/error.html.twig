@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section>
+            <h5>Oops! An Error {{ status_code }} occured!</h5>
+            <hr>
+            <p>Sorry, but an error <b>{{ status_code|status_text }}</b> ({{ status_code }}) occured.</p>
+            <p>
+                <a href="{{ path('homepage') }}">Homepage</a>
+            </p>
+    </section>
+{% endblock %}
