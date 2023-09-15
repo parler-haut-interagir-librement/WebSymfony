@@ -29,11 +29,7 @@
   </p>
 
   <nav>
-    <ul>
-      <li><a href="{{ url("homepage") }}" title="{{ "menu.home.title"|trans }}">{{ "menu.home.text"|trans }}</a></li>
-      <li><a href="{{ url("app_stimulus") }}" title="{{ "menu.stimulus.title"|trans }}">{{ "menu.stimulus.text"|trans }}</a></li>
-      <li><a href="/404" title="{{ "menu.error.title"|trans }}">{{ "menu.error.text"|trans }}</a></li>
-    </ul>
+    {{ knp_menu_render('mainMenu') }}
   </nav>
 </header>
 
