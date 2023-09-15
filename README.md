@@ -1,8 +1,8 @@
-# “**Proclaim** *Honestly*, **Interact** *Liberally*” **Micro***Symfony*
+# “**Proclaim** *Honestly*, **Interact** *Liberally*” **Web***Symfony*
 
-“**Proclaim** *Honestly*, **Interact** *Liberally*” **Micro***Symfony* is a Symfony application skeleton on steroids, ready to use.
+“**Proclaim** *Honestly*, **Interact** *Liberally*” **Web***Symfony* is a Symfony application skeleton on steroids, ready to use.
 
-The purpose of **Micro***Symfony* is to provide a sandbox with some sensible defaults and ready to use. 
+The purpose of **Web***Symfony* is to provide a sandbox with some sensible defaults and ready to use. 
 It can be a solution if you want to quickly set up something, create a POC, test things, 
 and even make a small "one-page" application.
 
@@ -35,36 +35,42 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 
 ## Features 🚀
 
-**Micro***Symfony* ships these features, ready to use:
+**Web***Symfony* ships these features, ready to use:
 
 * One task runner
-  * Castor ([source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/castor.php)) 
+  * Castor ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/castor.php)) 
 * Static analysis with PHPStan
-  * [Configuration](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/phpstan.neon)
+  * [Configuration](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/phpstan.neon)
 * Coding standards with php-cs-fixer
   * [Configuration](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/.php-cs-fixer.dist.php)
 * Refactoring with Rector
   * [Configuration](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/restor.php)
 * The debug toolbar ([doc](https://symfony.com/doc/current/profiler.html))
 * Tests ([organisation](https://www.strangebuzz.com/en/blog/organizing-your-symfony-project-tests))
-  * Unit test [example](https://github.com/parler-haut-interagir-librement/MicroSymfony/tree/main/tests/Unit/Helper) 
-  * Integration test [example](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/tests/Integration/Twig/Extension/ResponseExtensionTest.php) 
-  * Functional test [example](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/tests/Functional/Controller/AppControllerTest.php) 
-  * API test [example](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/tests/Api/Controller/SlugifyActionTest.php) 
-  * E2E test [example](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/tests/E2E/Controller/AppControllerTest.php)
+  * Unit test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/tests/Unit/Helper) 
+  * Integration test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/tests/Integration/Twig/Extension/ResponseExtensionTest.php) 
+  * Functional test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/tests/Functional/Controller/AppControllerTest.php) 
+  * API test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/tests/Api/Controller/SlugifyActionTest.php) 
+  * E2E test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/tests/E2E/Controller/AppControllerTest.php)
 * Code coverage at 100%
-  * [Output on CI](https://github.com/parler-haut-interagir-librement/MicroSymfony/actions/runs/6178372662/job/16771491572)
-  * [Failing output example](https://github.com/parler-haut-interagir-librement/MicroSymfony/actions/runs/6176766049/job/16766431026)
-* GitHub CI ([actions](https://github.com/parler-haut-interagir-librement/MicroSymfony/actions))
-  * [Tests job output](https://github.com/parler-haut-interagir-librement/MicroSymfony/actions/runs/6178372662/job/16771491572)
-  * [Lint job output](https://github.com/parler-haut-interagir-librement/MicroSymfony/actions/runs/6178372662/job/16771491353)
+  * [Output on CI](https://github.com/parler-haut-interagir-librement/WebSymfony/actions/runs/6191674576/job/16810366756)
+  * [Failing output example](https://github.com/parler-haut-interagir-librement/WebSymfony/actions/runs/6176766049/job/16766431026)
+* GitHub CI ([actions](https://github.com/parler-haut-interagir-librement/WebSymfony/actions))
+  * [Tests job output](https://github.com/parler-haut-interagir-librement/WebSymfony/actions/runs/6191674576/job/16810366756)
+  * [Lint job output](https://github.com/parler-haut-interagir-librement/WebSymfony/actions/runs/6191674576/job/16810366901)
 * Asset mapper+Stimulus ([documentation](https://symfony.com/doc/current/frontend/asset_mapper.html))
-  * Vanilla Js ([source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/assets/controllers/hello_controller.js)) ([demo](https://microsymfony.ovh/stimulus))
-  * Fetch on a JSON endpoint of the application ([source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/assets/controllers/api_controller.js)) ([demo](https://ph-il.ca/demos/microsymfony/stimulus)) 
+  * Vanilla Js ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/assets/controllers/hello_controller.js)) ([demo](https://ph-il.ca/demos/websymfony/stimulus))
+  * Fetch on a JSON endpoint of the application ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/assets/controllers/api_controller.js)) ([demo](https://ph-il.ca/demos/websymfony/stimulus)) 
 * Symfony Maker ([documentation](https://symfony.com/bundles/SymfonyMakerBundle/current/index.html))
 * A custom error template
-  * [Source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/templates/bundles/TwigBundle/Exception/error.html.twig)
+  * [Source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/templates/bundles/TwigBundle/Exception/error.html.twig)
   * [Demo](https://ph-il.ca/demos/microsymfony/404) 
+* Database
+  * Doctrine ([documentation](https://symfony.com/bundles/DoctrineBundle/current/index.html))
+  * Doctrine Migrations ([documentation](https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html))
+  * Doctrine Fixture ([documentation](https://symfony.com/bundles/DoctrineFixturesBundle/current/index.html))
+  * Doctrine Extensions ([configuration in sumfony](https://symfony.com/bundles/StofDoctrineExtensionsBundle/current/index.html)) ([documentation](https://github.com/doctrine-extensions/DoctrineExtensions/tree/main/doc))
+* Object Menu [example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/src/Menu/MainMenuBuilder.php)
 
 ## Other good practices 👌
 
@@ -92,7 +98,7 @@ Note that the composer install command downloads all the required dependencies a
 
 Or use the GitHub template:
 
-![Use this template button](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/doc/use-this-template.png "Use this template")
+![Use this template button](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/doc/use-this-template.png "Use this template")
 
 To serve the application with the Symfony binary, run:
 
@@ -114,19 +120,44 @@ The application is now available at https://127.0.0.1:8000 (considering your 800
 
 ## Others “**Proclaim** Honestly, **Interact** Liberally” Skeletons 🩻
 
-* [WebSymfony](https://github.com/parler-haut-interagir-librement/WebSymfony)
-  * MicroSource +
-  * Database
-    * StofDoctrineExtensionsBundle
-  * EasyAdmin
-  * Security Layers
-    * SymfonySecurity
-    * NelmioSecurityBundle
-    * NelmioCorsBundle
-  * more.
+* [MicroSymfony](https://github.com/parler-haut-interagir-librement/MicroSymfony)
+  * Task runner
+    * Castor
+  * Static Analysis
+    * PHPStan
+  * Coding standards
+    * php-cs-fixer
+  * Refactoring
+    * Rector
+  * Debug toolbar
+  * Tests
+    * Unit test
+    * Integration test
+    * Functional test
+    * API test
+    * E2E test
+  * GitHub CI
+  * Asset mapper
+  * Stimulus
+  * Symfony Maker
+  * Custom error template
 
 * [ApiSymfony](https://github.com/parler-haut-interagir-librement/ApiSymfony)
   * API Platform
+  * Task runner
+    * Castor
+  * Static Analysis
+    * PHPStan
+  * Coding standards
+    * php-cs-fixer
+  * Refactoring
+    * Rector
+  * Tests
+    * Unit test
+    * API test
+    * E2E test
+  * GitHub CI
+  * Symfony Maker
 
 * [WebSkeleton](https://github.com/parler-haut-interagir-librement/WebSkeleton)
   * WebSymfony +
