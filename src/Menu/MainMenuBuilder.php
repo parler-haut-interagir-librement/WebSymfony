@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Menu;
 
 use Knp\Menu\FactoryInterface;
@@ -8,7 +10,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final readonly class MainMenuBuilder
 {
-
     /**
      * Add any other dependency you need...
      */
@@ -21,25 +22,24 @@ final readonly class MainMenuBuilder
         $menu = $this->factory->createItem('main', $options);
 
         $menu->addChild('menu.home.text',
-                        [
-                            'route'          => 'homepage',
-                            'linkAttributes' => ['title' => $this->translator->trans('menu.home.title')],
-                        ]
+            [
+                'route' => 'homepage',
+                'linkAttributes' => ['title' => $this->translator->trans('menu.home.title')],
+            ]
         );
         $menu->addChild('menu.stimulus.text',
-                        [
-                            'route'          => 'app_stimulus',
-                            'linkAttributes' => ['title' => $this->translator->trans('menu.stimulus.title')],
-                        ]
+            [
+                'route' => 'app_stimulus',
+                'linkAttributes' => ['title' => $this->translator->trans('menu.stimulus.title')],
+            ]
         );
         $menu->addChild('menu.error.text',
-                        [
-                            'uri'          => '/404',
-                            'linkAttributes' => ['title' => $this->translator->trans('menu.error.title')],
-                        ]
+            [
+                'uri' => '/404',
+                'linkAttributes' => ['title' => $this->translator->trans('menu.error.title')],
+            ]
         );
 
         return $menu;
     }
-
 }

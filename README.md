@@ -70,7 +70,13 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
   * Doctrine Migrations ([documentation](https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html))
   * Doctrine Fixture ([documentation](https://symfony.com/bundles/DoctrineFixturesBundle/current/index.html))
   * Doctrine Extensions ([configuration in sumfony](https://symfony.com/bundles/StofDoctrineExtensionsBundle/current/index.html)) ([documentation](https://github.com/doctrine-extensions/DoctrineExtensions/tree/main/doc))
-* Object Menu [example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/src/Menu/MainMenuBuilder.php)
+* Object Menu ([example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/src/Menu/MainMenuBuilder.php))
+* Security Layers
+  * SymfonySecurity ([documentation](https://symfony.com/doc/current/security.html)) 
+  * NelmioSecurityBundle
+  * NelmioCorsBundle
+* Admin
+  * EasyAdmin ([documentation](https://symfony.com/bundles/EasyAdminBundle/current/index.html))
 
 ## Other good practices 👌
 
