@@ -2,19 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Controller;
+namespace App\Tests\Functional\Controller\Admin;
 
 use Iterator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-final class AppControllerTest extends WebTestCase
+final class DashboardControllerTest extends WebTestCase
 {
     /**
-     * @see AppController::home()
+     * @see AppController::index()
      */
     public static function provideTestSimplePage(): Iterator
     {
-        yield ['/'];
+        yield ['/admin'];
+        yield ['/admin/en'];
+        yield ['/admin/fr'];
     }
 
     /**
