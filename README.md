@@ -30,7 +30,7 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 
 * [Symfony 6.3](https://symfony.com) 
 * [Twig 3](https://twig.symfony.com)
-* [Stimulus 3.2](https://stimulus.hotwired.dev/)
+* [Stimulus 3.3](https://stimulus.hotwired.dev/)
 * [PHPUnit 9.6](https://phpunit.de)
 
 ## Features 🚀
