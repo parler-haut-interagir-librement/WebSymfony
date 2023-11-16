@@ -31,5 +31,5 @@ services:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: mainMenu } # The alias is what is used to retrieve the menu
 
     app.ua.cache.parser:
-        class: Nelmio\SecurityBundle\UserAgent\UAFamilyParser\PsrCacheUAFamilyParse
+        class: Nelmio\SecurityBundle\UserAgent\UAFamilyParser\PsrCacheUAFamilyParser
         arguments: [ "@cache.app", "@nelmio_security.ua_parser.ua_php", 604800]
