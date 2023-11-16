@@ -57,9 +57,24 @@ nelmio_security:
                 - 'none'
             script-src:
                 - 'self'
+                - https://ga.jspm.io
+                # While working on AssetMapper Problem
+                - 'unsafe-inline'
+                - 'blob:'
             img-src:
                 - 'self'
-            #block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
+                - 'data:'
+                # only for demo, please remove
+                - https://ph-il.ca
+                - https://github.com
+                - https://raw.githubusercontent.com
+            connect-src:
+                - 'self'
+            style-src:
+                - 'self'
+                # While working on AssetMapper Problem
+                - 'unsafe-inline'
+                #block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
             upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
 
     # forces HTTPS handling, don't combine with flexible mode

@@ -103,7 +103,7 @@ Note that the composer install command downloads all the required dependencies a
 
 Or use the GitHub template:
 
-![Use this template button](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/doc/use-this-template.png "Use this template")
+![Use this template button](https://raw.githubusercontent.com/parler-haut-interagir-librement/WebSymfony/bc7b206da4c04f48b915d9dc506a75025276b3a8/doc/use-this-template.png "Use this template")
 
 ### Initializing from Github CLI
 

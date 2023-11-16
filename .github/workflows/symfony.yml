@@ -94,4 +94,4 @@ jobs:
       #castor cs:stan
       run: | 
         bin/console about --env=dev
-        vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G -vvv
+        vendor/bin/phpstan analyse --memory-limit 1G -vvv
