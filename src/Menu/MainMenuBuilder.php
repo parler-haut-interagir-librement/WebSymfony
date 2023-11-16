@@ -17,6 +17,9 @@ final readonly class MainMenuBuilder
     {
     }
 
+    /**
+     * @param mixed[] $options
+     */
     public function createMainMenu(array $options): ItemInterface
     {
         $menu = $this->factory->createItem('main', $options);

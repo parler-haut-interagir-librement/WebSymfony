@@ -166,4 +166,3 @@ function ci(): void
     cs_all();
     lint_all();
 }
-
