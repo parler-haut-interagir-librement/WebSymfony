@@ -29,3 +29,7 @@ services:
         arguments: [ "@knp_menu.factory" ]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: mainMenu } # The alias is what is used to retrieve the menu
+
+    app.ua.cache.parser:
+        class: Nelmio\SecurityBundle\UserAgent\UAFamilyParser\PsrCacheUAFamilyParse
+        arguments: [ "@cache.app", "@nelmio_security.ua_parser.ua_php", 604800]

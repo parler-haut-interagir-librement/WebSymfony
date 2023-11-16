@@ -13,7 +13,7 @@ we're usually adding on all our projects. We also remove many examples.
 
 Because a live demo is always better than all explanations. Here is it:
 
-* Live demo will be available at [https://ph-il.ca/demos/microsymfony](https://ph-il.ca/demos/microsymfony)
+* Live demo will be available at [https://ph-il.ca/demos/websymfony](https://ph-il.ca/demos/websymfony)
 
 ## Requirements ⛮
 
@@ -22,7 +22,7 @@ All “**Proclaim** *Honestly*, **Interact** *Liberally*” project will use the
 * [PHP 8.2](https://www.php.net/releases/8.2/en.php)
 * The [Symfony CLI](https://symfony.com/download)
 * The [Xdebug](https://xdebug.org/) PHP extension if you want to run the code coverage report (optional but recommended)
-* [Castor 0.8](https://github.com/jolicode/castor) task runner (optional)
+* [Castor 0.9.1](https://github.com/jolicode/castor) task runner (optional)
 
 ## Stack 🔗
 
@@ -31,7 +31,7 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 * [Symfony 6.3](https://symfony.com) 
 * [Twig 3](https://twig.symfony.com)
 * [Stimulus 3.2](https://stimulus.hotwired.dev/)
-* [PHPUnit 9.5](https://phpunit.de)
+* [PHPUnit 9.6](https://phpunit.de)
 
 ## Features 🚀
 
@@ -42,9 +42,9 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 * Static analysis with PHPStan
   * [Configuration](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/phpstan.neon)
 * Coding standards with php-cs-fixer
-  * [Configuration](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/.php-cs-fixer.dist.php)
+  * [Configuration](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/.php-cs-fixer.dist.php)
 * Refactoring with Rector
-  * [Configuration](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/restor.php)
+  * [Configuration](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/restor.php)
 * The debug toolbar ([doc](https://symfony.com/doc/current/profiler.html))
 * Tests ([organisation](https://www.strangebuzz.com/en/blog/organizing-your-symfony-project-tests))
   * Unit test [example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/tests/Unit/Helper) 
@@ -73,44 +73,52 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 * Object Menu ([example](https://github.com/parler-haut-interagir-librement/WebSymfony/tree/main/src/Menu/MainMenuBuilder.php))
 * Security Layers
   * SymfonySecurity ([documentation](https://symfony.com/doc/current/security.html)) 
-  * NelmioSecurityBundle
-  * NelmioCorsBundle
+  * NelmioSecurityBundle ([documentation](https://symfony.com/bundles/NelmioSecurityBundle/current/index.html))
+  * NelmioCorsBundle ([documentation]( https://symfony.com/bundles/NelmioCorsBundle/current/index.html))
 * Admin
   * EasyAdmin ([documentation](https://symfony.com/bundles/EasyAdminBundle/current/index.html))
 
 ## Other good practices 👌
 
-* Using strict types in all PHP files ([source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/src/Controller/AppController.php))
-* Using the ADR pattern in an action controller ([source](https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/src/Controller/SlugifyAction.php)) ([doc](https://symfony.com/doc/current/controller/service.html#invokable-controllers))
+* Using strict types in all PHP files ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/src/Controller/AppController.php))
+* Using the ADR pattern in an action controller ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/src/Controller/SlugifyAction.php)) ([doc](https://symfony.com/doc/current/controller/service.html#invokable-controllers))
 
-## What it doesn't ship? ❌
+## Initializing an application with WebSymfony 🪄
 
-* Doctrine ([installation](https://symfony.com/doc/current/doctrine.html#installing-doctrine)) or use ([WebSymfony](https://github.com/parler-haut-interagir-librement/WebSymfony))
-
-## Initializing an application with MicroSymfony 🪄
-
-As the application template is [registered on Packagist](https://packagist.org/packages/phil/microsymfony), 
+### Initializing using composer
+As the application template is [registered on Packagist](https://packagist.org/packages/phil/websymfony), 
 you can use composer to install it with the following command:
 
 ```
-$ composer create-project phil/microsymfony
+$ composer create-project phil/websymfony
 ```
 
-It creates a microsymfony directory with the new project. 
+It creates a websymfony directory with the new project. 
 In this case, you must set up Git and a repository yourself. 
 But that's the fastest way to test it. 
 
 Note that the composer install command downloads all the required dependencies and builds the assets.
 
+### Initializing from Github site
+
 Or use the GitHub template:
 
 ![Use this template button](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/doc/use-this-template.png "Use this template")
 
+### Initializing from Github CLI
+
+```
+$ gh repo create my-project --clone --private --template parler-haut-interagir-librement/WebSymfony
+```
+
+### Serving the application 
 To serve the application with the Symfony binary, run:
 
 ```
 $ symfony server:start --daemon
 ```
+
+or use the castor command
 
 ```
 $ castor symfony:start
@@ -169,6 +177,5 @@ The application is now available at https://127.0.0.1:8000 (considering your 800
   * WebSymfony +
   * “**Proclaim** Honestly, **Interact** Liberally” Bundles
     * PhilBodyBundle - Add Base Twig Components
-    * PhilDoctrineExtensionPublishBundle - Add Publish functionality to Doctrine Entity
-    * PhilDoctrineExtensionStofBundle - Add missing stuff to StofDoctrineExtensionsBundle
+    * more to come
   * more.
