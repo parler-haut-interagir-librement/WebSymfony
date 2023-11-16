@@ -1,0 +1,92 @@
+nelmio_security:
+    # prevents framing of the entire site
+    clickjacking:
+        paths:
+            '^/.*': DENY
+
+    # disables content type sniffing for script resources
+    content_type:
+        nosniff: true
+
+    # forces Microsoft's XSS-Protection with
+    # its block mode
+    xss_protection:
+        enabled: true
+        mode_block: true
+        report_uri: '%router.request_context.base_url%/nelmio/xss/report'
+
+    # Send a full URL in the `Referer` header when performing a same-origin request,
+    # only send the origin of the document to secure destination (HTTPS->HTTPS),
+    # and send no header to a less secure destination (HTTPS->HTTP).
+    # If `strict-origin-when-cross-origin` is not supported, use `no-referrer` policy,
+    # no referrer information is sent along with requests.
+    referrer_policy:
+        enabled: true
+        policies:
+            - 'no-referrer'
+            - 'strict-origin-when-cross-origin'
+
+    # signs/verifies all cookies
+    # change it if you need to change cookie in JS
+    signed_cookie:
+        names: [ '*' ]
+
+    # prevents redirections outside the website's domain
+    external_redirects:
+        abort: true
+        log: true
+
+    # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
+    csp:
+        enabled: true
+        hosts: [ ]
+        content_types: [ ]
+        report_logger_service: monolog.logger.security
+        # remove if you support IE10, IE11, Firefox < 23
+        compat_headers: false
+        enforce:
+            level1_fallback: false
+            # This reduces noise provided via the report URI. This will parse the user agent and can consume some CPU usage.
+            browser_adaptive:
+                enabled: true
+                # Cached parser to help with CPU usage
+                parser: app.ua.cache.parser
+            # You might want to use report-uri.com instead
+            report-uri: '%router.request_context.base_url%/nelmio/csp/report'
+            default-src:
+                - 'none'
+            script-src:
+                - 'self'
+                - https://ga.jspm.io
+                # While working on AssetMapper Problem
+                - 'unsafe-inline'
+                - 'blob:'
+            img-src:
+                - 'self'
+                - 'data:'
+                # only for demo, please remove
+                - https://ph-il.ca
+                - https://github.com
+                - https://raw.githubusercontent.com
+            connect-src:
+                - 'self'
+            style-src:
+                - 'self'
+                # While working on AssetMapper Problem
+                - 'unsafe-inline'
+                #block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
+            upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
+
+    # forces HTTPS handling, don't combine with flexible mode
+    # and make sure you have SSL working on your site before enabling this
+    # We recommend to do it with your web server
+    #    forced_ssl:
+    #        hsts_max_age: 2592000 # 30 days
+    #        hsts_subdomains: true
+    #        redirect_status_code: 302 # default, switch to 301 for permanent redirects
+
+    # flexible HTTPS handling, read the detailed config info
+    # and make sure you have SSL working on your site before enabling this
+    #    flexible_ssl:
+    #        cookie_name: auth
+    #        unsecured_logout: false

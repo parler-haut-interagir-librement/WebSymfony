@@ -32,6 +32,10 @@
             <directory suffix=".php">src</directory>
         </include>
 
+        <exclude>
+            <directory>src/DataFixtures</directory>
+        </exclude>
+
         <report>
             <clover outputFile="var/coverage/clover.xml" />
         </report>

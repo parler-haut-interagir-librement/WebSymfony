@@ -10,9 +10,12 @@ use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassConst\RemoveUnusedPrivateClassConstantRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPrivateMethodRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
+use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
+use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\SymfonyLevelSetList;
@@ -33,22 +36,27 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
 
     // define sets of rules
-    $rectorConfig->sets([
-                            LevelSetList::UP_TO_PHP_82,
-                            SetList::CODE_QUALITY,
-                            SetList::CODING_STYLE,
-                            SetList::DEAD_CODE,
-                            SetList::EARLY_RETURN,
-                            SetList::NAMING,
-                            SetList::PRIVATIZATION,
-                            SetList::TYPE_DECLARATION,
-                            // Don't update to SymfonyLevelSetList::UP_TO_SYMFONY_63, There's an error in it
-                            SymfonyLevelSetList::UP_TO_SYMFONY_62,
-                            SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
-                            SymfonySetList::SYMFONY_63,
-                            SymfonySetList::SYMFONY_CODE_QUALITY,
-                            SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
-                        ]);
+    $rectorConfig->sets(sets: [
+                                  LevelSetList::UP_TO_PHP_82,
+                                  SetList::CODE_QUALITY,
+                                  SetList::CODING_STYLE,
+                                  SetList::DEAD_CODE,
+                                  SetList::EARLY_RETURN,
+                                  SetList::NAMING,
+                                  SetList::PRIVATIZATION,
+                                  SetList::TYPE_DECLARATION,
+                                  // Don't update to SymfonyLevelSetList::UP_TO_SYMFONY_63, There's an error in it
+                                  SymfonyLevelSetList::UP_TO_SYMFONY_63,
+                                  SymfonySetList::SYMFONY_CODE_QUALITY,
+                                  SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
+                                  SymfonySetList::SYMFONY_63,
+                                  SymfonySetList::SYMFONY_CODE_QUALITY,
+                                  SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
+                                  DoctrineSetList::DOCTRINE_CODE_QUALITY,
+                                  DoctrineSetList::DOCTRINE_DBAL_30,
+                                  DoctrineSetList::DOCTRINE_ORM_29,
+                                  DoctrineSetList::GEDMO_ANNOTATIONS_TO_ATTRIBUTES,
+                              ]);
 
     $rectorConfig->skip([
                             AttributeKeyToClassConstFetchRector::class,
@@ -60,7 +68,9 @@ return static function (RectorConfig $rectorConfig): void {
                             RemoveUnusedPrivateMethodRector::class,
                             RemoveUnusedPromotedPropertyRector::class,
                             RenameParamToMatchTypeRector::class,
+                            RenamePropertyToMatchTypeRector::class,
                             RenameVariableToMatchMethodCallReturnTypeRector::class,
+                            RenameVariableToMatchNewTypeRector::class,
                             ReplaceParentCallByPropertyCallRector::class,
                         ]);
 };

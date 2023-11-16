@@ -23,3 +23,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    app.main_menu_builder:
+        class: App\Menu\MainMenuBuilder
+        arguments: [ "@knp_menu.factory" ]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: mainMenu } # The alias is what is used to retrieve the menu
+
+    app.ua.cache.parser:
+        class: Nelmio\SecurityBundle\UserAgent\UAFamilyParser\PsrCacheUAFamilyParser
+        arguments: [ "@cache.app", "@nelmio_security.ua_parser.ua_php", 604800]
