@@ -143,7 +143,7 @@ function lint_yaml(): void
 {
     title(__FUNCTION__, get_command());
     run('bin/console lint:yaml config/ --parse-tags', quiet: false);
-    run('bin/console lint:yaml translate/ --parse-tags', quiet: false);
+    run('bin/console lint:yaml translations/ --parse-tags', quiet: false);
     success();
 }
 
