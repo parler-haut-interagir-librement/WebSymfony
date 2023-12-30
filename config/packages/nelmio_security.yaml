@@ -46,7 +46,6 @@ nelmio_security:
         compat_headers: false
         hash:
             algorithm: sha384
-	
         enforce:
             level1_fallback: false
             # This reduces noise provided via the report URI. This will parse the user agent and can consume some CPU usage.
