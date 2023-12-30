@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html class="no-js" lang="{{ app.request.locale }}">
 <head>
   <meta charset=utf-8>
   <meta name="description" content="{{ "brand.info"|trans }}">
@@ -13,11 +13,10 @@
 
   {% block stylesheets %}
     {{ ux_controller_link_tags() }}
-    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
   {% endblock %}
 
   {% block javascripts %}
-    {{ importmap() }}
+    {% block importmap %}{{ importmap('app', {'nonce': csp_nonce('script') }) }}{% endblock %}
   {% endblock %}
 </head>
 
@@ -54,6 +53,6 @@
     </div>
   </div>
 </footer>
-
+{% block modal %}{% endblock %}
 </body>
 </html>

@@ -16,10 +16,9 @@
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
 
 ###> jolicode/castor ###
 .castor.stub.php
@@ -27,5 +26,14 @@
 
 ###> symfony/asset-mapper ###
 /public/assets/
+/assets/vendor
 ###< symfony/asset-mapper ###
 
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

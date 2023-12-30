@@ -45,7 +45,6 @@ return static function (RectorConfig $rectorConfig): void {
                                   SetList::NAMING,
                                   SetList::PRIVATIZATION,
                                   SetList::TYPE_DECLARATION,
-                                  // Don't update to SymfonyLevelSetList::UP_TO_SYMFONY_63, There's an error in it
                                   SymfonyLevelSetList::UP_TO_SYMFONY_63,
                                   SymfonySetList::SYMFONY_CODE_QUALITY,
                                   SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,

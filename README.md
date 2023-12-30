@@ -17,7 +17,7 @@ Because a live demo is always better than all explanations. Here is it:
 
 ## Requirements ⛮
 
-All “**Proclaim** *Honestly*, **Interact** *Liberally*” project will use the latest version within 1/2 month depending on dependency availability.
+All “**Proclaim** *Honestly*, **Interact** *Liberally*” project will use the latest version within 1 to 2 months depending on dependency availability.
 
 * [PHP 8.2](https://www.php.net/releases/8.2/en.php)
 * The [Symfony CLI](https://symfony.com/download)
@@ -26,9 +26,9 @@ All “**Proclaim** *Honestly*, **Interact** *Liberally*” project will use the
 
 ## Stack 🔗
 
-All “**Proclaim** Honestly, **Interact** Liberally” project will use the latest version within 1/2 month depending on dependency availability.
+All “**Proclaim** *Honestly*, **Interact** *Liberally*” project will use the latest version within 1 to 2 months depending on dependency availability.
 
-* [Symfony 6.3](https://symfony.com) 
+* [Symfony 7.0](https://symfony.com) 
 * [Twig 3](https://twig.symfony.com)
 * [Stimulus 3.3](https://stimulus.hotwired.dev/)
 * [PHPUnit 9.6](https://phpunit.de)
@@ -61,6 +61,7 @@ All “**Proclaim** Honestly, **Interact** Liberally” project will use the lat
 * Asset mapper+Stimulus ([documentation](https://symfony.com/doc/current/frontend/asset_mapper.html))
   * Vanilla Js ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/assets/controllers/hello_controller.js)) ([demo](https://ph-il.ca/demos/websymfony/stimulus))
   * Fetch on a JSON endpoint of the application ([source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/assets/controllers/api_controller.js)) ([demo](https://ph-il.ca/demos/websymfony/stimulus)) 
+* Tailwind CSS 
 * Symfony Maker ([documentation](https://symfony.com/bundles/SymfonyMakerBundle/current/index.html))
 * A custom error template
   * [Source](https://github.com/parler-haut-interagir-librement/WebSymfony/blob/main/templates/bundles/TwigBundle/Exception/error.html.twig)
