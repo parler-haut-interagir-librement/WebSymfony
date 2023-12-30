@@ -60,8 +60,8 @@ function coverage(): void
     run(
         'php -d xdebug.enable=1 -d memory_limit=-1 vendor/bin/simple-phpunit --coverage-html=var/coverage',
         environment: [
-                         'XDEBUG_MODE' => 'coverage',
-                     ],
+            'XDEBUG_MODE' => 'coverage',
+        ],
         quiet: false
     );
     run('php bin/coverage-checker.php var/coverage/clover.xml 100', quiet: false);
@@ -84,17 +84,11 @@ function stan(): void
     success();
 }
 
-#[AsTask(namespace: 'cs', description: 'Fix PHP files with php-cs-fixer (ignore PHP 8.2 warning)')]
+#[AsTask(namespace: 'cs', description: 'Fix PHP files with php-cs-fixer')]
 function fix_php(): void
 {
     title(__FUNCTION__, get_command());
-    run(
-        'vendor/bin/php-cs-fixer fix --allow-risky=yes',
-        environment: [
-                         'PHP_CS_FIXER_IGNORE_ENV' => 1,
-                     ],
-        quiet: false
-    );
+    run('vendor/bin/php-cs-fixer fix --allow-risky=yes', quiet: false);
     success();
 }
 
@@ -166,3 +160,4 @@ function ci(): void
     cs_all();
     lint_all();
 }
+

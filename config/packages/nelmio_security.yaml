@@ -44,6 +44,9 @@ nelmio_security:
         report_logger_service: monolog.logger.security
         # remove if you support IE10, IE11, Firefox < 23
         compat_headers: false
+        hash:
+            algorithm: sha384
+	
         enforce:
             level1_fallback: false
             # This reduces noise provided via the report URI. This will parse the user agent and can consume some CPU usage.
@@ -57,10 +60,8 @@ nelmio_security:
                 - 'none'
             script-src:
                 - 'self'
-                - https://ga.jspm.io
-                # While working on AssetMapper Problem
-                - 'unsafe-inline'
-                - 'blob:'
+                - 'blob:' # AssetMapper
+                - 'data:' # AssetMapper
             img-src:
                 - 'self'
                 - 'data:'
