@@ -19,9 +19,7 @@ final class DashboardControllerTest extends WebTestCase
         yield ['/admin/fr'];
     }
 
-    /**
-     * @dataProvider provideTestSimplePage
-     */
+    #[DataProvider('provideTestSimplePage')]
     public function testSimplePage(string $page): void
     {
         $client = self::createClient();

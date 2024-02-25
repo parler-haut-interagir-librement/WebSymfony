@@ -34,23 +34,21 @@
       <div {{ stimulus_controller('hello') }}>
         <form {{ stimulus_target('hello', 'form') }}>
           <label for="name">Enter your name below and click on the
-            <b>Great</b> button
+            <b>Greet</b> button
             <input type="text" name="name" {{ stimulus_target('hello', 'name') }} />
           </label>
 
-          <input type="submit" value="Great" {{ stimulus_action('hello', 'greet:prevent', 'click') }} />
+          <input type="submit" value="Greet" {{ stimulus_action('hello', 'greet:prevent', 'click') }} />
         </form>
 
-        <div {{ stimulus_target('hello', 'dialog') }}>
+        <dialog {{ stimulus_target('hello', 'dialog') }}>
           <div>
-            <h2 {{ stimulus_target('hello', 'greating') }}></h2>
+            <h2 {{ stimulus_target('hello', 'greeting') }}></h2>
             <form method="dialog">
-              <menu>
                 <button {{ stimulus_action('hello', 'reset', 'click') }}>Close</button>
-              </menu>
             </form>
           </div>
-        </div>
+        </dialog>
       </div>
     </div>
 
