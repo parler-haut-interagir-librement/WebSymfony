@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\Admin;
 
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 final class DashboardControllerTest extends WebTestCase
 {
     /**

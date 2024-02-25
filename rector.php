@@ -56,11 +56,11 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::CONFIGS,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
-                                  DoctrineSetList::DOCTRINE_CODE_QUALITY,
-                                  DoctrineSetList::DOCTRINE_DBAL_30,
-                                  DoctrineSetList::DOCTRINE_ORM_29,
-                                  DoctrineSetList::GEDMO_ANNOTATIONS_TO_ATTRIBUTES,
-                              ]);
+        DoctrineSetList::DOCTRINE_CODE_QUALITY,
+        DoctrineSetList::DOCTRINE_DBAL_30,
+        DoctrineSetList::DOCTRINE_ORM_29,
+        DoctrineSetList::GEDMO_ANNOTATIONS_TO_ATTRIBUTES,
+    ]);
 
     $rectorConfig->skip([
         AttributeKeyToClassConstFetchRector::class,
