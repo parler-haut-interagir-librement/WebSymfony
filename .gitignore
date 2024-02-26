@@ -1,3 +1,5 @@
+.DS_Store
+.idea
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -7,6 +9,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
 # Managed by Composer
 /bin/*
 !bin/console
@@ -26,14 +29,19 @@
 
 ###> symfony/asset-mapper ###
 /public/assets/
-/assets/vendor
+/assets/vendor/
 ###< symfony/asset-mapper ###
 
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
 
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
+###> bamarni/composer-bin-plugin ###
+/vendor-bin/**/vendor/
+###< bamarni/composer-bin-plugin ###
+
+###> phpunit/phpunit ###
 /phpunit.xml
-###< symfony/phpunit-bridge ###
+.phpunit.result.cache
+.phpunit.cache
+###< phpunit/phpunit ###

@@ -29,8 +29,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-                        ->setTitle('brand.html')
-                        ->setLocales(['en', 'fr'])
+            ->setTitle('brand.html')
+            ->setLocales(['en', 'fr'])
         ;
     }
 

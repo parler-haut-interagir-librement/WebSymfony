@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\Admin;
 
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @internal
+ */
 final class DashboardControllerTest extends WebTestCase
 {
     /**
@@ -19,9 +23,7 @@ final class DashboardControllerTest extends WebTestCase
         yield ['/admin/fr'];
     }
 
-    /**
-     * @dataProvider provideTestSimplePage
-     */
+    #[DataProvider('provideTestSimplePage')]
     public function testSimplePage(string $page): void
     {
         $client = self::createClient();

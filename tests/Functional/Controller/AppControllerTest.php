@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller;
 
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @internal
+ */
 final class AppControllerTest extends WebTestCase
 {
     /**
@@ -17,9 +21,7 @@ final class AppControllerTest extends WebTestCase
         yield ['/'];
     }
 
-    /**
-     * @dataProvider provideTestSimplePage
-     */
+    #[DataProvider('provideTestSimplePage')]
     public function testSimplePage(string $page): void
     {
         $client = self::createClient();
