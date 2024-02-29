@@ -46,8 +46,9 @@ jobs:
     - name: Audit the code for vulnerabilities
       run: composer audit
 
-    - name: sa
-      run: | 
+    - name: Deploys
+      run: |
+        php bin/console importmap:install
         php bin/console tailwind:build --minify
         php bin/console asset-map:compile
 
