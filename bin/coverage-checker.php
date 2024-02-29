@@ -7,6 +7,10 @@ declare(strict_types=1);
 $inputFile = $argv[1];
 $percentage = min(100, max(0, (int) $argv[2]));
 
+echo $inputFile;
+var_dump(file_exists('var/'));
+var_dump(file_exists('var/coverage/'));
+
 if (!file_exists($inputFile)) {
     throw new InvalidArgumentException('Invalid input file provided');
 }
