@@ -10,6 +10,7 @@ $percentage = min(100, max(0, (int) $argv[2]));
 echo $inputFile;
 var_dump(file_exists('var/'));
 var_dump(file_exists('var/coverage/'));
+var_dump(file_exists('var/coverage/clover.xml'));
 
 if (!file_exists($inputFile)) {
     throw new InvalidArgumentException('Invalid input file provided');
