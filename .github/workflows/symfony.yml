@@ -64,7 +64,7 @@ jobs:
     # Setup
     - uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'
+        php-version: '8.3'
         tools: cs2pr
         #tools: cs2pr, castor
     - uses: actions/checkout@v3
@@ -101,4 +101,4 @@ jobs:
       #castor cs:stan
       run: | 
         bin/console about --env=dev
-        vendor/bin/phpstan analyse -c ./phpstan.dist.neon --memory-limit 1G -vvv
+        vendor/bin/phpstan analyse --memory-limit 1G -vvv
