@@ -22,4 +22,6 @@ return [
     Symfonycasts\TailwindBundle\SymfonycastsTailwindBundle::class => ['all' => true],
     TalesFromADev\Twig\Extra\Tailwind\Bridge\Symfony\Bundle\TalesFromADevTwigExtraTailwindBundle::class => ['all' => true],
     TalesFromADev\FlowbiteBundle\TalesFromADevFlowbiteBundle::class => ['all' => true],
+    Kocal\BiomeJsBundle\KocalBiomeJsBundle::class => ['dev' => true],
+    Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
 ];

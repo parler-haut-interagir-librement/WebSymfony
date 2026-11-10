@@ -1,5 +1,18 @@
+###> Git ###
+!.gitignore
+# credential file
+.gitconfig.local
+###< Git ###
+
+###> IDE and OS ###
 .DS_Store
 .idea
+###< IDE and OS ###
+
+# Managed by Composer
+/bin/*
+!bin/console
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -9,10 +22,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-# Managed by Composer
-/bin/*
-!bin/console
 
 ###> friendsofphp/php-cs-fixer ###
 /.php-cs-fixer.php
@@ -45,3 +54,5 @@ phpstan.neon
 .phpunit.result.cache
 .phpunit.cache
 ###< phpunit/phpunit ###
+
+# Project Specific
