@@ -55,6 +55,33 @@ final class UserTest extends TestCase
         self::assertSame([User::ROLE_USER], $user->getRoles());
     }
 
+    public function testStoredRolesNeverHoldRoleUserNorDuplicates(): void
+    {
+        $user = new User('email', 'password', 'username');
+        $user->setRoles([User::ROLE_ADMIN, User::ROLE_USER, User::ROLE_ADMIN, 'ROLE_EDITOR']);
+
+        self::assertSame([0 => User::ROLE_ADMIN, 1 => 'ROLE_EDITOR'], $this->storedRoles($user));
+    }
+
+    public function testRolesReadFromTheDatabaseAreListedOnceWithoutGaps(): void
+    {
+        $user = new User('email', 'password', 'username');
+        new ReflectionClass(User::class)->getProperty('roles')->setValue($user, [User::ROLE_USER, User::ROLE_ADMIN, User::ROLE_ADMIN]);
+
+        self::assertSame([User::ROLE_USER, User::ROLE_ADMIN], $user->getRoles());
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function storedRoles(User $user): array
+    {
+        $roles = new ReflectionClass(User::class)->getProperty('roles')->getValue($user);
+        self::assertIsArray($roles);
+
+        return $roles;
+    }
+
     public function testUserGetUserIdentifier(): void
     {
         $user = new User('email', 'password', 'username');
