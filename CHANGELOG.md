@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - A KnpMenu main menu, English and French translations chosen from the browser's language, the Timestampable extension,
   Sentry in production.
 - The PHIL identity in the layout: logo, copyright of Parler Haut, Interagir Librement, light and dark themes on Pico CSS.
+- The security files of `phil/dev-tools` in `.github/`: Dependabot with a cooldown of seven days, the OpenSSF
+  Scorecard and zizmor; the actions of every workflow pinned to a commit, the checkout without credentials.
 
 ### Changed
 

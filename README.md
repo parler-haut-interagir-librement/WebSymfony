@@ -238,5 +238,4 @@ The MIT License, with the attribution to the original repository it asks for. Se
 
 ## Built with WebSymfony 🛠️
 
-* [WebSkeleton](https://github.com/parler-haut-interagir-librement/WebSkeleton), and through it
-  [Parler Haut, Interagir Librement](https://ph-il.ca) and [TiltTek](https://tilttek.com)
+* [WebSkeleton](https://github.com/parler-haut-interagir-librement/WebSkeleton), which lists the sites built with it.

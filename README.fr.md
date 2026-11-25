@@ -1,4 +1,4 @@
-<!-- phil-dev source-sha256=0f03755c24964dfc3e6918162a0048707f555088d34de32651012bd7c7b9030e -->
+<!-- phil-dev source-sha256=b43b8b7062018d80d2adc2f00ab3ed0592850e3e6cfb7f8e5f175b01328f6650 -->
 # WebSymfony 🕸️
 
 [![Latest Version](https://img.shields.io/packagist/v/phil/websymfony.svg?style=flat-square)](https://packagist.org/packages/phil/websymfony)
@@ -246,5 +246,4 @@ La licence MIT, avec l'attribution au dépôt d'origine qu'elle demande. Voyez l
 
 ## Bâti avec WebSymfony 🛠️
 
-* [WebSkeleton](https://github.com/parler-haut-interagir-librement/WebSkeleton), et par lui
-  [Parler Haut, Interagir Librement](https://ph-il.ca) et [TiltTek](https://tilttek.com)
+* [WebSkeleton](https://github.com/parler-haut-interagir-librement/WebSkeleton), qui énumère les sites bâtis avec lui.
