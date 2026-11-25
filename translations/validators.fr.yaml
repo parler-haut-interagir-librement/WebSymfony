@@ -1,0 +1,8 @@
+signup:
+  username:
+    taken: Ce nom d’utilisateur est déjà pris.
+    characters: Un nom d’utilisateur ne contient que des lettres, des chiffres, des points, des tirets et des traits de soulignement.
+  email:
+    taken: Un compte utilise déjà cette adresse courriel.
+  password:
+    mismatch: Les deux mots de passe ne sont pas les mêmes.

@@ -1,8 +1,8 @@
 {
     "name": "phil/websymfony",
-    "description": "A template to initialize an web application to use Symfony 7.0",
+    "description": "A Symfony web application template built on MicroSymfony: accounts, security headers, an administration, Pico CSS, tests and quality gates.",
     "license": "MIT",
-    "type": "symfony-application-template",
+    "type": "project",
     "keywords": [
         "micro-framework",
         "php",
@@ -12,15 +12,22 @@
         "symfony",
         "web-application"
     ],
-    "homepage": "https://ph-il.ca",
     "authors": [
         {
             "name": "Philippe Gamache",
-            "email": "philippe@ph-il.ca"
+            "email": "philippe@ph-il.ca",
+            "homepage": "https://ph-il.ca",
+            "role": "Maintainer"
+        },
+        {
+            "name": "COil (Strangebuzz)",
+            "homepage": "https://www.strangebuzz.com",
+            "role": "Author of strangebuzz/microsymfony"
         }
     ],
+    "homepage": "https://ph-il.ca",
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.5",
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
@@ -28,67 +35,72 @@
         "ext-mbstring": "*",
         "ext-simplexml": "*",
         "ext-xml": "*",
-        "doctrine/doctrine-bundle": "^2.18",
-        "doctrine/doctrine-migrations-bundle": "^3.7",
-        "doctrine/orm": "^3.5",
-        "easycorp/easyadmin-bundle": "^4.27",
-        "knplabs/knp-menu-bundle": "^3.3",
-        "league/commonmark": "^2.7",
+        "doctrine/dbal": "^4.0",
+        "doctrine/doctrine-bundle": "^3.0",
+        "doctrine/doctrine-migrations-bundle": "^4.0",
+        "doctrine/migrations": "^3.9",
+        "doctrine/orm": "^3.3",
+        "doctrine/persistence": "^4.1",
+        "easycorp/easyadmin-bundle": "^5.10",
+        "gedmo/doctrine-extensions": "^3.22",
+        "knplabs/knp-menu": "^3.8",
+        "knplabs/knp-menu-bundle": "^3.8",
+        "league/commonmark": "^2.4",
         "nelmio/cors-bundle": "^2.6",
-        "nelmio/security-bundle": "^3.6",
-        "runtime/frankenphp-symfony": "^0.2.0",
-        "sentry/sentry-symfony": "^5.6",
-        "stof/doctrine-extensions-bundle": "^1.14",
-        "symfony/asset": "7.3.*",
-        "symfony/asset-mapper": "7.3.*",
-        "symfony/console": "7.3.*",
-        "symfony/dotenv": "7.3.*",
-        "symfony/flex": "^2.10",
-        "symfony/form": "7.3.*",
-        "symfony/framework-bundle": "7.3.*",
-        "symfony/http-foundation": "7.3.*",
-        "symfony/http-kernel": "7.3.*",
-        "symfony/intl": "7.3.*",
-        "symfony/monolog-bundle": "^3.10",
-        "symfony/routing": "7.3.*",
-        "symfony/runtime": "7.3.*",
-        "symfony/security-csrf": "~7.3.0",
-        "symfony/stimulus-bundle": "^2.31",
-        "symfony/string": "7.3.*",
-        "symfony/translation": "7.3.*",
-        "symfony/twig-bundle": "7.3.*",
-        "symfony/ux-turbo": "^2.31",
-        "symfony/validator": "7.3.*",
-        "symfony/web-link": "7.3.*",
-        "symfony/yaml": "7.3.*",
-        "twig/extra-bundle": "^3.22",
-        "twig/html-extra": "^3.22",
-        "twig/intl-extra": "^3.22",
-        "twig/markdown-extra": "^3.22",
-        "twig/string-extra": "^3.22",
-        "twig/twig": "^3.22"
+        "nelmio/security-bundle": "^3.9",
+        "sentry/sentry-symfony": "^5.17",
+        "stof/doctrine-extensions-bundle": "^1.15",
+        "symfony/asset": "~8.2.0",
+        "symfony/asset-mapper": "~8.2.0",
+        "symfony/cache-contracts": "^3.6",
+        "symfony/console": "~8.2.0",
+        "symfony/dependency-injection": "~8.2.0",
+        "symfony/doctrine-bridge": "~8.2.0",
+        "symfony/dotenv": "~8.2.0",
+        "symfony/filesystem": "~8.2.0",
+        "symfony/flex": "^2",
+        "symfony/form": "~8.2.0",
+        "symfony/framework-bundle": "~8.2.0",
+        "symfony/http-foundation": "~8.2.0",
+        "symfony/http-kernel": "~8.2.0",
+        "symfony/intl": "~8.2.0",
+        "symfony/monolog-bundle": "^4.0",
+        "symfony/options-resolver": "~8.2.0",
+        "symfony/password-hasher": "~8.2.0",
+        "symfony/rate-limiter": "~8.2.0",
+        "symfony/routing": "~8.2.0",
+        "symfony/runtime": "~8.2.0",
+        "symfony/security-bundle": "~8.2.0",
+        "symfony/security-core": "~8.2.0",
+        "symfony/security-csrf": "~8.2.0",
+        "symfony/security-http": "~8.2.0",
+        "symfony/stimulus-bundle": "^3.0",
+        "symfony/string": "~8.2.0",
+        "symfony/translation": "~8.2.0",
+        "symfony/twig-bundle": "~8.2.0",
+        "symfony/ux-turbo": "^3.0",
+        "symfony/validator": "~8.2.0",
+        "symfony/web-link": "~8.2.0",
+        "symfony/yaml": "~8.2.0",
+        "twig/extra-bundle": "^3.0",
+        "twig/markdown-extra": "^3.7",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.5",
         "bamarni/composer-bin-plugin": "^1.8",
-        "kocal/biome-js-bundle": "^1.5",
-        "phpstan/extension-installer": "^1.4",
-        "phpstan/phpdoc-parser": "^2.3",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-doctrine": "^2.0",
-        "phpstan/phpstan-strict-rules": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0",
-        "phpunit/phpunit": "^11.5",
-        "rector/rector": "^2.2",
-        "symfony/browser-kit": "7.3.*",
-        "symfony/css-selector": "7.3.*",
-        "symfony/debug-bundle": "7.3.*",
-        "symfony/maker-bundle": "^1.64",
-        "symfony/panther": "^2.3",
-        "symfony/stopwatch": "7.3.*",
-        "symfony/var-dumper": "7.3.*",
-        "symfony/web-profiler-bundle": "7.3.*"
+        "brianium/paratest": "^7.27",
+        "ergebnis/phpunit-slow-test-detector": "^2.27",
+        "phil/dev-tools": "^0.1@alpha",
+        "phpunit/phpunit": "^13.0",
+        "shipmonk/composer-dependency-analyser": "^1.8",
+        "symfony/browser-kit": "~8.2.0",
+        "symfony/css-selector": "~8.2.0",
+        "symfony/debug-bundle": "~8.2.0",
+        "symfony/maker-bundle": "^1.61",
+        "symfony/requirements-checker": "^2.0",
+        "symfony/stopwatch": "~8.2.0",
+        "symfony/web-profiler-bundle": "~8.2.0",
+        "zenstruck/foundry": "^2.4"
     },
     "replace": {
         "symfony/polyfill-ctype": "*",
@@ -99,12 +111,14 @@
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*",
         "symfony/polyfill-php82": "*",
-        "symfony/polyfill-php83": "*"
+        "symfony/polyfill-php83": "*",
+        "symfony/polyfill-php84": "*",
+        "symfony/polyfill-php85": "*"
     },
     "conflict": {
         "symfony/symfony": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
@@ -117,48 +131,49 @@
         }
     },
     "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true,
             "php-http/discovery": true,
-            "phpstan/extension-installer": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },
-        "classmap-authoritative": true,
+        "audit": {
+            "abandoned": "fail",
+            "block-insecure": true
+        },
+        "platform": {
+            "php": "8.5.0"
+        },
+        "policy": {
+            "advisories": {
+                "block": true
+            }
+        },
+        "process-timeout": 0,
         "sort-packages": true
     },
     "extra": {
         "bamarni-bin": {
-            "bin-links": true,
-            "forward-command": true
+            "bin-links": false,
+            "forward-command": true,
+            "target-directory": "vendor-bin"
         },
         "symfony": {
             "allow-contrib": true,
-            "require": "7.3.*",
-            "docker": false
+            "require": "8.2.*"
         }
     },
     "scripts": {
         "post-install-cmd": [
-            "@auto-scripts",
-            "@composer bin php-cs-fixer install --ansi"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ],
-        "app:test": [
-            "vendor/bin/phpunit"
         ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "requirements-checker": "script"
         }
-    },
-    "scripts-descriptions": {
-        "app:test": "Run all PHPUnit tests"
     }
 }

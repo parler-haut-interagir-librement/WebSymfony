@@ -1,59 +1,109 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ app.request.locale }}">
+<html lang="{{ app.request.locale }}">
 <head>
-  <meta charset=utf-8>
-  <meta name="description" content="{{ "brand.info"|trans }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{% block title %}{{ brand }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ description|striptags }}{% endblock %}" />
+    <link rel="icon" href="{{ asset('img/phil_img_logo.svg') }}" type="image/svg+xml">
 
-  <title>{% block title %}{{ "brand.name"|trans }}{% endblock %}</title>
-  <link rel="icon" href="{{ asset('img/phil_img_logo.svg') }}" sizes="any" type="image/svg+xml">
+    {% block stylesheets %}{% endblock %}
 
-  {% block preconnect %}{% endblock %}
-
-  {% block stylesheets %}
-    {{ ux_controller_link_tags() }}
-    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
-  {% endblock %}
-
-  {% block javascripts %}
-  {% endblock %}
-  {% block importmap %}{{ importmap('app') }}{% endblock %}
-
+    {#- The importmap is an inline script: it carries the nonce of the Content Security Policy. #}
+    {% block javascripts %}{{ importmap('app', {nonce: csp_nonce('script')}) }}{% endblock %}
 </head>
 
-<body id="{% block id %}base{% endblock %}">
+{% macro gitHubIcon(placement) %}
+    <a aria-label="{{ 'layout.github'|trans }}" class="contrast" data-tooltip="{{ website }}" data-placement="{{ placement }}" href="{{ website }}" target="_blank" rel="noopener noreferrer">
+        <img src="{{ asset('img/github.svg') }}" width="24" height="24" alt="">
+    </a>
+{% endmacro %}
 
-<header>
-  <p>
-    <img width="42px" height="42px" alt="Phil Logo" src="{{ asset('img/phil_img_logo.svg') }}"> {{ "brand.html"|trans|raw }}
-  </p>
+<body>
 
-  <nav>
-    {{ knp_menu_render('mainMenu') }}
-  </nav>
+<header class="container" {{ stimulus_controller('header') }}>
+    <div class="grid">
+        <div>
+            <hgroup>
+                <h1>
+                    <a href="{{ path('App\\Controller\\HomeAction') }}"><img src="{{ asset('img/phil_img_logo.svg') }}" width="40" height="40" alt=""> {{ brand_html|raw }}</a>
+                </h1>
+                <p>{{ 'brand.info'|trans }}</p>
+            </hgroup>
+        </div>
+
+        <div>
+            <nav aria-label="{{ 'layout.menu'|trans }}">
+                <ul>
+                    <li>
+                        <details class="dropdown">
+                            <summary role="button" class="primary">{{ 'layout.menu'|trans }}</summary>
+                            <ul>
+                                {% for item in knp_menu_get('main').children %}
+                                    <li><a href="{{ item.uri }}"{{ aria_current_page_if(item.uri == app.request.pathInfo)|raw }}>{{ item.label|trans }}</a></li>
+                                {% endfor %}
+                                <li><a href="{{ app.environment == 'dev' ? '/_error/404.html' : '/404' }}">{{ 'menu.error'|trans }}</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    {% if app.user %}
+                        <li><a href="{{ path('App\\Controller\\AccountAction') }}">{{ 'layout.my_account'|trans }}</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin') }}">{{ 'layout.admin'|trans }}</a></li>
+                        {% endif %}
+                        <li>
+                            <form method="post" action="{{ logout_path() }}">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                                <button type="submit" class="secondary outline">{{ 'layout.logout'|trans }}</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('App\\Controller\\Security\\LoginAction') }}">{{ 'layout.login'|trans }}</a></li>
+                        <li><a href="{{ path('App\\Controller\\Security\\SignupAction') }}">{{ 'layout.signup'|trans }}</a></li>
+                    {% endif %}
+                    <li>{{ _self.gitHubIcon('bottom') }}</li>
+                    <li>
+                        <a rel="nofollow" href="#" class="theme-icon" {{ stimulus_target('header', 'lightEmoji') }} {{ stimulus_action('header', 'setDarkMode', 'click') }} data-tooltip="{{ 'theme.to_dark'|trans }}" data-placement="bottom">🔆</a>
+                        <a rel="nofollow" href="#" class="theme-icon" {{ stimulus_target('header', 'darkEmoji') }} {{ stimulus_action('header', 'setLightMode', 'click') }} data-tooltip="{{ 'theme.to_light'|trans }}" data-placement="bottom">🌘</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <hr/>
 </header>
 
-<main>
-  {% block body %}{% endblock %}
+<main class="container">
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <article role="alert" class="flash-{{ type }}">{{ message|trans }}</article>
+        {% endfor %}
+    {% endfor %}
+
+    {% block body %}{% endblock %}
 </main>
 
-<footer>
-  <p>{{ "brand.html"|trans|raw }}</p>
+<footer class="container">
+    <hr/>
 
-  <div>
-    <div>
-      &copy; 2022-{{ "now"|date("Y") }} <a href="https://ph-il.ca" target="_blank">{{ "brand.copyright"|trans }}</a>;
-      {{ "footer.all_rights"|trans }}
-      <br />
-      {{ "footer.symfony"|trans|raw }}
-    </div>
+    <div class="grid">
+        <div>
+            <span class="versions">{{ brand }} · Symfony {{ sf_version }} ({{ 'frankenphp' in php_sapi ? php_sapi : 'PHP ' ~ php_sapi }} {{ php_version }})</span>
 
-    <div>
-      <a href="https://github.com/parler-haut-interagir-librement/WebSymfony" target="_blank"><img alt="GitHub" height="25px" width="25px"
-                                                                                 src="{{ asset('img/github.svg') }}"></a>
+            <small>
+                © <a href="{{ copyright_url }}">{{ 'brand.copyright'|trans }}</a> · {{ 'footer.all_rights'|trans }}<br/>
+                {{ 'footer.credits'|trans({'%strangebuzz%': '<a href="https://www.strangebuzz.com" target="_blank" rel="noopener noreferrer">COil/Strangebuzz 🐝</a>', '%website%': website})|raw }}<br/>
+                {{ 'footer.symfony'|trans|raw }}
+            </small>
+        </div>
+
+        <div class="github">
+            {{ _self.gitHubIcon('top') }}
+        </div>
     </div>
-  </div>
 </footer>
-{% block modal %}{% endblock %}
+
 </body>
 </html>

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'signup.title'|trans }} | {{ brand }}{% endblock %}
+
+{% block body %}
+    <article>
+        <header>
+            <h2>{{ 'signup.title'|trans }}</h2>
+        </header>
+
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.username, {label: 'signup.username', attr: {autocomplete: 'username'}}) }}
+            {{ form_row(form.email, {label: 'signup.email', attr: {autocomplete: 'email'}}) }}
+            {{ form_row(form.plainPassword.first, {
+                label: 'signup.password',
+                help: 'signup.password_hint',
+                help_translation_parameters: {'%count%': password_min_length},
+                attr: {autocomplete: 'new-password', minlength: password_min_length},
+            }) }}
+            {{ form_row(form.plainPassword.second, {label: 'signup.confirm', attr: {autocomplete: 'new-password'}}) }}
+            <button type="submit">{{ 'signup.submit'|trans }}</button>
+        {{ form_end(form) }}
+
+        <footer>
+            <a href="{{ path('App\\Controller\\Security\\LoginAction') }}">{{ 'signup.login'|trans }}</a>
+        </footer>
+    </article>
+{% endblock %}

@@ -16,14 +16,12 @@ export default class extends Controller {
         apiUrl.searchParams.set('title', this.titleTarget.value);
         const slugTarget = this.slugTarget;
         fetch(apiUrl.toString())
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
+            .then((response) => response.json())
+            .then((data) => {
                 slugTarget.value = data.slug;
             })
-            .catch(function (error) {
-                console.log('An error occured. 😞', error);
+            .catch((error) => {
+                console.log('An error occurred. 😞', error);
             });
     }
 }

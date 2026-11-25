@@ -1,0 +1,8 @@
+signup:
+  username:
+    taken: This user name is already taken.
+    characters: A user name holds only letters, digits, dots, dashes and underscores.
+  email:
+    taken: An account already uses this email address.
+  password:
+    mismatch: The two passwords are not the same.

@@ -1,65 +1,41 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this template are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html). WebSymfony is built on
+[MicroSymfony](https://github.com/parler-haut-interagir-librement/MicroSymfony), which follows
+[strangebuzz/MicroSymfony](https://github.com/strangebuzz/MicroSymfony).
 
 ## [Unreleased]
 
 ### Added
 
-- CODE_OF_CONDUCT.md
-- CONTRIBUTING.md
-- LICENSE
-- Maker Bundle
-- Badges in README.md
-- Scrutinizer-ci
-- Scrutinizer coverage report link
-- Security Policy
-- Bug Report Template
-- GitHub templates
-- Darkmode in template
-- Contrib.rocks image
-- Article reference
-- FrankenPHP runtime
-- Psalm
-- Favicon
+- Everything MicroSymfony gives: Doctrine ORM with a `User` entity, its Foundry factory and story, the examples, the
+  five test suites, Castor tasks, the quality gates of `phil/dev-tools`, `compose.yaml` with FrankenPHP in worker mode
+  and PostgreSQL, MySQL documented as the other choice.
+- Accounts: sign-up with a Symfony form and its validation, form sign-in with CSRF and throttling, sign-out by POST
+  with CSRF, an account page, `ROLE_ADMIN` above `ROLE_USER`, `user_checker_on_refresh` on the firewall, the session
+  keeping a crc32c of the password hash.
+- A migration adding the roles of the users, described through the DBAL schema API.
+- Fixtures with an administrator and a member whose passwords the README gives, for development only.
+- An EasyAdmin dashboard for `ROLE_ADMIN`, with the users listed and shown.
+- Security headers and a Content Security Policy with a nonce by NelmioSecurityBundle; cross-origin requests on
+  `/api/` only by NelmioCorsBundle.
+- A KnpMenu main menu, English and French translations chosen from the browser's language, the Timestampable extension,
+  Sentry in production.
+- The PHIL identity in the layout: logo, copyright of Parler Haut, Interagir Librement, light and dark themes on Pico CSS.
+- The security files of `phil/dev-tools` in `.github/`: Dependabot with a cooldown of seven days, the OpenSSF
+  Scorecard and zizmor; the actions of every workflow pinned to a commit, the checkout without credentials.
 
 ### Changed
 
-- Upgrade Symfony to 7.3.0
-- Upgrade Castor to 0.25
-- Upgrade league/CommonMark to 2
-- Upgrade PHPStan to 2
-- Upgrade Rector to 2
-- Upgrade Twig to
-- Test use ADR controller class FQCN as route name
-- Update the Features section in README.md
-- Update PHPStan configuration
-- Clean and upgrade README.md
-- Correct typos in README.md
-- Better layout
-- Better configs
-
-### Deprecated
-
-- Nothing of notes
+- Symfony 8.2 from its first release candidate, on PHP 8.5 or later, every other dependency at its latest version.
+- The configuration in PHP files, the tasks in Castor only, no script in `composer.json`.
 
 ### Removed
 
-- Trademark sign previously shown after the project description in version
-  0.3.0
-
-### Fixed
-
-- N/A
-
-### Security
-
-- N/A
-
-
+- Tailwind, Flowbite, Scrutinizer, Biome as a bundle and the YAML configuration.
 
 ## [7.0.1] - 2024-02-24
 
@@ -95,7 +71,7 @@ Now the major and minor version is sync with the symfony major and minor version
 - Better .gitignore
 - More pleasing configurations for PHP CS Fixer
 - More pleasing configurations for Rector
- 
+
 ### Removed
 
 - No more Annotations, all in Attributes
@@ -122,15 +98,12 @@ Now the major and minor version is sync with the symfony major and minor version
 - Fix Others Skeletons Sections in README.md
 - Fix Demo URLs in README.md
 
-
-
 ## [0.1.2] - 2023-09-19
 
 ### Fixed
 
 - Fix Others Skeletons Sections in README.md
 - Fix Demo URLs in README.md
-
 
 ## [0.1.1] - 2023-09-14
 

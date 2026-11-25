@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'login.title'|trans }} | {{ brand }}{% endblock %}
+
+{% block body %}
+    <article>
+        <header>
+            <h2>{{ 'login.title'|trans }}</h2>
+        </header>
+
+        <form method="post" action="{{ path('App\\Controller\\Security\\LoginAction') }}">
+            {% if error %}
+                <p id="login-error" role="alert"><mark>{{ error.messageKey|trans(error.messageData, 'security') }}</mark></p>
+            {% endif %}
+
+            <label for="login-username">{{ 'login.username'|trans }}</label>
+            <input id="login-username" type="text" name="_username" value="{{ last_username }}" autocomplete="username" required{% if last_username is empty %} autofocus{% endif %}{% if error %} aria-invalid="true" aria-describedby="login-error"{% endif %}>
+
+            <label for="login-password">{{ 'login.password'|trans }}</label>
+            <input id="login-password" type="password" name="_password" autocomplete="current-password" required{% if last_username is not empty %} autofocus{% endif %}{% if error %} aria-invalid="true" aria-describedby="login-error"{% endif %}>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit">{{ 'login.submit'|trans }}</button>
+        </form>
+
+        <footer>
+            <a href="{{ path('App\\Controller\\Security\\SignupAction') }}">{{ 'login.signup'|trans }}</a>
+        </footer>
+    </article>
+{% endblock %}

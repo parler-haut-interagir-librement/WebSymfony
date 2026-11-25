@@ -1,22 +1,75 @@
 brand:
   name: 'Parler Haut, Interagir Librement : WebSymfony'
   copyright: 'Parler Haut, Interagir Librement'
-  html: '<b>Parler</b> <i>Haut</i>, <b>Interagir</b> <i>Librement</i> : <b>Web</b><i>Symfony</i>'
-  info: WebSymfony est un squelette d'application Symfony sous stéroïdes, prêt à l'emploi.
-  tech: La plateforme est basé sur les dernières versions de différentes technologies créés pour le web. 
-        Par exemple Symfony 7.0+, PHP 8.3+, Stimulus, Turbo 8, MySQL, Redis, et beaucoup d'autres.
+  info: WebSymfony est un gabarit d’application web Symfony sous stéroïdes, prêt à l’emploi.
 
 footer:
-  all_rights: Tous les droits réservés
-  symfony: Symfony™ est une marque commerciale de <a target="_blank" href="https://symfony.com/license">Symfony SAS</a>.
+  all_rights: Tous droits réservés
+  credits: 'Bâti sur MicroSymfony, par %strangebuzz% et <a href="%website%/graphs/contributors">ses contributeurs</a>.'
+  symfony: Symfony™ est une marque de commerce de <a target="_blank" rel="noopener noreferrer" href="https://symfony.com/license">Symfony SAS</a>.
+
+layout:
+  skip: Aller au contenu
+  menu: Menu principal
+  account: Compte
+  my_account: Mon compte
+  admin: Administration
+  login: Se connecter
+  signup: S’inscrire
+  logout: Se déconnecter
+  github: 'Le dépôt GitHub de WebSymfony'
+
+theme:
+  to_dark: Passer au mode sombre
+  to_light: Passer au mode clair
 
 menu:
-  home:
-    text: Accueil
-    title: Aller à la page d'accueil
-  stimulus:
-    text: Stimulus
-    title: Aller à la page Stimulus
-  error:
-    text: Erreur 404
-    title: Voir la page 404
+  readme: README
+  hello: Bonjour le monde !
+  stimulus: JavaScript avec Stimulus
+  composer: Le fichier composer.json
+  form: Exemple de formulaire
+  users: Liste des utilisateurs
+  error: Page d’erreur personnalisée
+
+login:
+  title: Connexion
+  username: Nom d’utilisateur
+  password: Mot de passe
+  submit: Se connecter
+  signup: Pas encore de compte ? Inscrivez-vous
+
+signup:
+  title: Inscription
+  username: Nom d’utilisateur
+  email: Adresse courriel
+  password: Mot de passe
+  confirm: Mot de passe, encore
+  password_hint: Au moins %count% caractères.
+  submit: Créer mon compte
+  login: Déjà membre ? Connectez-vous
+
+account:
+  title: Mon compte
+  welcome: 'Bienvenue, %username%.'
+  username: Nom d’utilisateur
+  email: Adresse courriel
+  roles: Rôles
+  created_at: Membre depuis
+
+admin:
+  menu:
+    dashboard: Tableau de bord
+    users: Utilisateurs
+    site: Retour au site
+    logout: Se déconnecter
+  dashboard:
+    title: Administration
+    text: L’administration du site, pour ses administrateurs seulement. Ajoutez un contrôleur CRUD dans src/Controller/Admin/ et un lien dans DashboardController::configureMenuItems().
+  user:
+    singular: Utilisateur
+    plural: Utilisateurs
+    username: Nom d’utilisateur
+    email: Adresse courriel
+    roles: Rôles
+    created_at: Créé le

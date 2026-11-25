@@ -4,44 +4,37 @@ declare(strict_types=1);
 
 namespace App\Menu;
 
+use App\Controller\ComposerAction;
+use App\Controller\FormAction;
+use App\Controller\HelloWorldAction;
+use App\Controller\HomeAction;
+use App\Controller\ListUsersAction;
+use Knp\Menu\Attribute\AsMenuBuilder;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * The main menu of the site, rendered by knp_menu_render('main') in base.html.twig. Its labels are translation keys.
+ *
+ * @see MainMenuBuilderTest
+ */
 final readonly class MainMenuBuilder
 {
-    /**
-     * Add any other dependency you need...
-     */
-    public function __construct(private FactoryInterface $factory, private TranslatorInterface $translator)
-    {
+    public function __construct(
+        private FactoryInterface $factory,
+    ) {
     }
 
-    /**
-     * @param mixed[] $options
-     */
-    public function createMainMenu(array $options): ItemInterface
+    #[AsMenuBuilder(name: 'main')]
+    public function createMainMenu(): ItemInterface
     {
-        $menu = $this->factory->createItem('main', $options);
-
-        $menu->addChild('menu.home.text',
-            [
-                'route' => 'homepage',
-                'linkAttributes' => ['title' => $this->translator->trans('menu.home.title')],
-            ]
-        );
-        $menu->addChild('menu.stimulus.text',
-            [
-                'route' => 'app_stimulus',
-                'linkAttributes' => ['title' => $this->translator->trans('menu.stimulus.title')],
-            ]
-        );
-        $menu->addChild('menu.error.text',
-            [
-                'uri' => '/404',
-                'linkAttributes' => ['title' => $this->translator->trans('menu.error.title')],
-            ]
-        );
+        $menu = $this->factory->createItem('main');
+        $menu->addChild('menu.readme', ['route' => HomeAction::class]);
+        $menu->addChild('menu.hello', ['route' => HelloWorldAction::class]);
+        $menu->addChild('menu.stimulus', ['route' => 'App\Controller\StimulusAction']);
+        $menu->addChild('menu.composer', ['route' => ComposerAction::class]);
+        $menu->addChild('menu.form', ['route' => FormAction::class]);
+        $menu->addChild('menu.users', ['route' => ListUsersAction::class]);
 
         return $menu;
     }

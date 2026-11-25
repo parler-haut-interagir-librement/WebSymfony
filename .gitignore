@@ -1,17 +1,7 @@
-###> Git ###
-!.gitignore
-# credential file
-.gitconfig.local
-###< Git ###
-
-###> IDE and OS ###
-.DS_Store
-.idea
-###< IDE and OS ###
-
-# Managed by Composer
-/bin/*
-!bin/console
+###> bamarni/composer-bin-plugin ###
+/vendor-bin/**/vendor/
+/vendor-bin/**/composer.lock
+###< bamarni/composer-bin-plugin ###
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -21,6 +11,8 @@
 /public/bundles/
 /var/
 /vendor/
+/config/reference.php
+/config/schema.json
 ###< symfony/framework-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###
@@ -28,26 +20,13 @@
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
 
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
-
 ###> jolicode/castor ###
 .castor.stub.php
 ###< jolicode/castor ###
 
 ###> symfony/asset-mapper ###
 /public/assets/
-/assets/vendor/
 ###< symfony/asset-mapper ###
-
-###> phpstan/phpstan ###
-phpstan.neon
-###< phpstan/phpstan ###
-
-###> bamarni/composer-bin-plugin ###
-/vendor-bin/**/vendor/
-###< bamarni/composer-bin-plugin ###
 
 ###> phpunit/phpunit ###
 /phpunit.xml
@@ -55,4 +34,10 @@ phpstan.neon
 .phpunit.cache
 ###< phpunit/phpunit ###
 
-# Project Specific
+###> phil/dev-tools ###
+/.deptrac.cache
+###< phil/dev-tools ###
+
+###> misc ###
+.opencode/
+###< misc ###

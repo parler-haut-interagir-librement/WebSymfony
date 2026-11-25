@@ -1,0 +1,62 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Twig\Extension;
+
+use App\Helper\StringHelper;
+use DOMDocument;
+use DOMElement;
+use DOMNode;
+use DOMNodeList;
+use DOMXPath;
+use Twig\Attribute\AsTwigFilter;
+
+use function Symfony\Component\String\u;
+
+final readonly class MarkdownExtension
+{
+    public function __construct(
+        private StringHelper $stringHelper,
+    ) {
+    }
+
+    /**
+     * Add the missing anchors on demo website homepage displaying the GitHub README.
+     *
+     * The output is flagged as safe HTML (`isSafe: ['html']`) so the template does not
+     * need a trailing `|raw`. This is safe ONLY because the input is a trusted source
+     * (our own README.md); never apply this filter to user-provided content.
+     *
+     * @see https://github.com/parler-haut-interagir-librement/MicroSymfony/blob/main/README.md?plain=1
+     */
+    #[AsTwigFilter('add_headers_anchors', isSafe: ['html'])]
+    public function addHeadersAnchors(string $html): string
+    {
+        // DOMDocument::loadHTML() throws a ValueError on an empty string, so bail out early.
+        $encoded = mb_encode_numericentity($html, [0x80, 0x10FFFF, 0, ~0], 'UTF-8');
+        if ('' === $encoded || u($html)->trim()->isEmpty()) {
+            return $html;
+        }
+
+        // Keep libxml from emitting warnings to the error log on imperfect HTML5 input.
+        $previousUseInternalErrors = libxml_use_internal_errors(true);
+
+        $dom = new DOMDocument();
+        $dom->loadHTML($encoded, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD);
+
+        // Allow to have the same "buggy" anchors as GitHub
+        /** @var DOMNodeList<DOMNode> $tags */
+        $tags = new DOMXPath($dom)->query('//h2 | //h3');
+        foreach ($tags as $headerTag) {
+            $slug = $this->stringHelper->slugify($headerTag->textContent);
+            /** @var DOMElement $headerTag */
+            $headerTag->setAttribute('id', $slug.(u($slug)->length() !== u($headerTag->textContent)->length() ? '-' : '')); // add "-" when we have a final Emoji.
+        }
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($previousUseInternalErrors);
+
+        return (string) $dom->saveHTML();
+    }
+}
