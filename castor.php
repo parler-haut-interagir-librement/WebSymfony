@@ -173,6 +173,9 @@ function resetDatabase(): void
 
 // Tests ——————————————————————————————————————————————————————————————————————
 
+/** The SQLite database on which test:schema runs the migrations, removed afterwards. */
+const SCHEMA_DATABASE = 'var/data_schema.db';
+
 const PHPUNIT_SUITES = ['Unit', 'Integration', 'Api', 'Functional', 'E2E'];
 
 function phpunit(string $suites, string $filter, string $options): int
@@ -236,6 +239,24 @@ function test_e2e(#[AsOption] string $filter = '', #[AsOption] string $options =
     title('test:e2e');
 
     return phpunit('E2E', $filter, $options);
+}
+
+#[AsTask(name: 'schema', namespace: 'test', description: 'Run the migrations on a fresh SQLite database, then check that its schema matches the Doctrine mapping', aliases: ['test-schema'])]
+function test_schema(): int
+{
+    title('test:schema');
+    $context = context()->withEnvironment(['DATABASE_URL' => 'sqlite:///%kernel.project_dir%/'.SCHEMA_DATABASE]);
+    exit_code('rm -f ./'.SCHEMA_DATABASE);
+    io()->note('Running the migrations on '.SCHEMA_DATABASE.'...');
+    $exitCode = exit_code('bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration', context: $context);
+    if ($exitCode === 0) {
+        io()->note('Comparing the schema with the mapping...');
+        $exitCode = exit_code('bin/console doctrine:schema:validate', context: $context);
+    }
+
+    exit_code('rm -f ./'.SCHEMA_DATABASE);
+
+    return success($exitCode);
 }
 
 #[AsTask(name: 'next', namespace: 'test', description: 'Run the tests on the next PHP version, in its Docker image')]
@@ -311,12 +332,12 @@ function lint_yaml(): int
     return success(exit_code('bin/console lint:yaml .github compose.yaml compose.override.yaml --parse-tags'));
 }
 
-#[AsTask(name: 'doctrine', namespace: 'lint', description: 'Validate the Doctrine mapping and schema', aliases: ['lint-doctrine'])]
+#[AsTask(name: 'doctrine', namespace: 'lint', description: 'Check the Doctrine mapping', aliases: ['lint-doctrine'])]
 function lint_doctrine(): int
 {
     title('lint:doctrine');
 
-    return success(exit_code('bin/console doctrine:schema:validate'));
+    return success(exit_code('bin/console doctrine:schema:validate --skip-sync'));
 }
 
 #[AsTask(name: 'composer', namespace: 'lint', description: 'Check the dependencies: analysis, advisories, unused packages, normalized composer.json', aliases: ['lint-composer'])]
@@ -438,16 +459,18 @@ function fix_all(): int
 
 // Continuous integration —————————————————————————————————————————————————————
 
-#[AsTask(name: 'all', namespace: 'ci', description: 'Run the continuous integration locally: coverage, then every lint', aliases: ['ci'])]
+#[AsTask(name: 'all', namespace: 'ci', description: 'Run the continuous integration locally: coverage, the migrations against the mapping, then every lint', aliases: ['ci'])]
 function ci(): int
 {
     title('ci:all');
     purge();
     io()->section('Coverage');
     $coverage = coverage();
+    io()->section('Schema');
+    $schema = test_schema();
     io()->section('Lints');
 
-    return success(aggregate($coverage, lint_all()));
+    return success(aggregate($coverage, $schema, lint_all()));
 }
 
 // Helpers ————————————————————————————————————————————————————————————————————

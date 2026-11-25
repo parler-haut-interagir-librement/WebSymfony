@@ -143,11 +143,12 @@ Everything MicroSymfony has stays: the examples, the five test suites, Castor, t
 | `castor test` | Every PHPUnit suite; `--filter` and `--options` pass on to PHPUnit. |
 | `castor test:unit`, `test:integration`, `test:api`, `test:functional`, `test:e2e` | One suite. |
 | `castor test:next` | The tests on the next PHP version, in its Docker image. |
+| `castor test:schema` | The migrations on a fresh SQLite database, then its schema compared with the Doctrine mapping. |
 | `castor coverage` | The HTML coverage report in `var/coverage/`, and its threshold. |
 | `castor infection` | Mutation testing. |
 | `castor lint` | Every lint and the static analysis. |
 | `castor fix` | Rector, PHP-CS-Fixer, Twig-CS-Fixer, Biome and composer-normalize. |
-| `castor ci` | The continuous integration, locally: coverage, then every lint. |
+| `castor ci` | The continuous integration, locally: coverage, `test:schema`, then every lint. |
 | `castor hooks` | The git hooks: the fast checks on the staged files before each commit. |
 ## Quality gates 🚦
 
