@@ -1,5 +1,6 @@
-# The continuous integration: the advisories, the tests on PHP 8.5 and the next PHP, every lint. Every action is pinned
-# to the commit of the version its comment names, and the checkout keeps no credential.
+# The continuous integration: the advisories, the tests on PHP 8.5 and the next PHP, the migrations against the Doctrine
+# mapping, every lint. Every action is pinned to the commit of the version its comment names, and the checkout keeps no
+# credential.
 name: Symfony
 
 on:
@@ -47,6 +48,8 @@ jobs:
         run: composer install --no-interaction --no-progress --prefer-dist
       - name: Prepare the database
         run: castor load-fixtures
+      - name: Check the migrations against the Doctrine mapping
+        run: castor test:schema
       - name: Run the tests with their coverage threshold
         run: castor coverage
 

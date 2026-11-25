@@ -32,6 +32,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Symfony 8.2 from its first release candidate, on PHP 8.5 or later, every other dependency at its latest version.
 - The configuration in PHP files, the tasks in Castor only, no script in `composer.json`.
+- `castor lint:doctrine` checks the Doctrine mapping only, so the lint job runs without a database;
+  `castor test:schema` runs the migrations on a fresh SQLite database and compares its schema with the mapping, in
+  `castor ci` and in the tests job of the workflow.
 
 ### Removed
 
