@@ -72,7 +72,7 @@ final class UserTest extends TestCase
     }
 
     /**
-     * @return array<int, string>
+     * @return array<mixed, mixed>
      */
     private function storedRoles(User $user): array
     {
