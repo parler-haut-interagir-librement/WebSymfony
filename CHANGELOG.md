@@ -7,9 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [MicroSymfony](https://github.com/parler-haut-interagir-librement/MicroSymfony), which follows
 [strangebuzz/MicroSymfony](https://github.com/strangebuzz/MicroSymfony).
 
-## Unreleased
-
-The next version is 8.2.0-RC3.
+## [8.2.0-RC3] - 2026-11-26
 
 ### Added
 
