@@ -38,6 +38,10 @@
 /.deptrac.cache
 ###< phil/dev-tools ###
 
+###> symfony/panther ###
+/drivers/
+###< symfony/panther ###
+
 ###> misc ###
 .opencode/
 ###< misc ###

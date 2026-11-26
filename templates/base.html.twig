@@ -8,6 +8,8 @@
     <meta name="description" content="{% block description %}{{ description|striptags }}{% endblock %}" />
     <link rel="icon" href="{{ asset('img/phil_img_logo.svg') }}" type="image/svg+xml">
 
+    <link rel="stylesheet" href="{{ asset('vendor/@picocss/pico/css/pico.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% block stylesheets %}{% endblock %}
 
     {#- The importmap is an inline script: it carries the nonce of the Content Security Policy. #}

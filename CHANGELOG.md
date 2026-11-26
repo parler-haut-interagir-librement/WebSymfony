@@ -7,6 +7,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [MicroSymfony](https://github.com/parler-haut-interagir-librement/MicroSymfony), which follows
 [strangebuzz/MicroSymfony](https://github.com/strangebuzz/MicroSymfony).
 
+## Unreleased
+
+The next version is 8.2.0-RC3.
+
+### Added
+
+- `symfony/panther` 2.4 as a development requirement, its `ServerExtension` in `phpunit.dist.xml` and its variables in
+  `.env.test`: the E2E suite, `HomePageTest`, opens the home page in Chrome on `localhost` and waits for the Stimulus
+  controller of the header to set `data-theme` on `<html>` and hide the icon of the dark theme, which proves that the
+  JavaScript of the page runs under the Content Security Policy. `castor test:e2e` runs it alone, with Chrome and
+  chromedriver on the `PATH`; the suite is left out of the `suites` of `PHIL_CASTOR`, so `castor test`,
+  `castor coverage`, `castor ci` and the continuous integration need no browser.
+
+### Fixed
+
+- The stylesheets, Pico CSS then `styles/app.css`, are linked from `base.html.twig` instead of imported by
+  `assets/app.js`: AssetMapper turned each imported stylesheet into a `data:` module of the import map, which the
+  Content Security Policy of NelmioSecurityBundle refuses, so the module `app`, Stimulus, Turbo and every controller
+  never ran in a browser.
+
 ## [8.2.0-RC2] - 2026-11-26
 
 ### Added

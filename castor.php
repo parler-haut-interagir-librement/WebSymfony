@@ -24,10 +24,12 @@ use function Phil\DevTools\Castor\aggregate;
 use function Phil\DevTools\Castor\success;
 use function Phil\DevTools\Castor\title;
 
-// The settings of the common tasks: the five suites of phpunit.dist.xml, every line covered, the YAML files of the
+// The settings of the common tasks: four suites of phpunit.dist.xml, every line covered, the YAML files of the
 // project, and the template's own checks of the Doctrine mapping that lint:all and ci:all run after theirs.
 const PHIL_CASTOR = [
-    'suites' => ['Unit', 'Integration', 'Api', 'Functional', 'E2E'],
+    // E2E is left out: it needs Chrome and chromedriver, and `castor test:e2e` runs it alone, outside `castor test`,
+    // `castor coverage`, `castor ci` and the continuous integration.
+    'suites' => ['Unit', 'Integration', 'Api', 'Functional'],
     'coverage_threshold' => 100,
     'yaml' => ['.github', 'config', 'compose.yaml', 'compose.override.yaml', 'translations'],
     'lint_also' => ['lint_doctrine'],

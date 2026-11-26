@@ -43,9 +43,9 @@ castor ci                        # coverage, every lint, then test:schema
 ## Tests
 
 One directory per kind of test under `tests/`, mirroring `src/`: `Unit` (no kernel), `Integration` (the kernel),
-`Api` and `Functional` (requests through the kernel), `E2E` (a browser, once Panther is installed). Every test class
-names what it covers with `#[CoversClass]` or `#[CoversNothing]`; PHPUnit fails on a deprecation, a notice or a
-warning.
+`Api` and `Functional` (requests through the kernel), `E2E` (Chrome driven by Panther, run by `castor test:e2e`
+alone, outside `castor test`, `castor ci` and the CI). Every test class names what it covers with `#[CoversClass]` or
+`#[CoversNothing]`; PHPUnit fails on a deprecation, a notice or a warning.
 
 ## Quality gates
 

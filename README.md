@@ -140,8 +140,9 @@ Everything MicroSymfony has stays: the examples, the five test suites, Castor, t
 | `castor start`, `castor stop` | The Symfony binary's web server with SQLite, its migrations and its fixtures. |
 | `castor up`, `castor down` | FrankenPHP in worker mode and PostgreSQL, with Docker Compose. |
 | `castor load-fixtures` | The SQLite database reset, migrated and filled. |
-| `castor test` | Every PHPUnit suite; `--filter` and `--options` pass on to PHPUnit. |
-| `castor test:unit`, `test:integration`, `test:api`, `test:functional`, `test:e2e` | One suite. |
+| `castor test` | Every PHPUnit suite but E2E; `--filter` and `--options` pass on to PHPUnit. |
+| `castor test:unit`, `test:integration`, `test:api`, `test:functional` | One suite. |
+| `castor test:e2e` | The E2E suite in a real browser, Chrome driven by Panther: it proves that the JavaScript of the pages runs under the Content Security Policy. Chrome and chromedriver must be on the `PATH`, or let `vendor/bin/bdi detect drivers` download the driver into `drivers/` after `composer require --dev dbrekelmans/bdi`. Neither `castor test`, `castor coverage`, `castor ci` nor the continuous integration runs it. |
 | `castor test:suite <name>` | One suite of `phpunit.dist.xml`, by its name. |
 | `castor test:next` | The tests on the next PHP version, in its Docker image. |
 | `castor test:schema` | The migrations on a fresh SQLite database, then its schema compared with the Doctrine mapping. |

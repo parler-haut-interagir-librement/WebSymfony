@@ -1,4 +1,4 @@
-<!-- phil-dev source-sha256=68ebd82c82ebac7f590cc79c4f4e70df36486b411514b6bf252b272b2d47b39f -->
+<!-- phil-dev source-sha256=9d9207704943dd35679c2e74858588add41ca8cfe598ce61f5b536ff48d3405d -->
 # WebSymfony 🕸️
 
 [![Latest Version](https://img.shields.io/packagist/v/phil/websymfony.svg?style=flat-square)](https://packagist.org/packages/phil/websymfony)
@@ -145,8 +145,9 @@ Compose.
 | `castor start`, `castor stop` | Le serveur Web du binaire Symfony avec SQLite, ses migrations et ses jeux de données d'essai. |
 | `castor up`, `castor down` | FrankenPHP en mode *worker* et PostgreSQL, avec Docker Compose. |
 | `castor load-fixtures` | La base de données SQLite remise à zéro, migrée et remplie. |
-| `castor test` | Toutes les suites PHPUnit ; `--filter` et `--options` sont transmis à PHPUnit. |
-| `castor test:unit`, `test:integration`, `test:api`, `test:functional`, `test:e2e` | Une seule suite. |
+| `castor test` | Toutes les suites PHPUnit sauf E2E ; `--filter` et `--options` sont transmis à PHPUnit. |
+| `castor test:unit`, `test:integration`, `test:api`, `test:functional` | Une seule suite. |
+| `castor test:e2e` | La suite E2E dans un vrai navigateur, Chrome piloté par Panther : elle prouve que le JavaScript des pages s'exécute sous la politique de sécurité du contenu. Chrome et chromedriver doivent être dans le `PATH`, ou laissez `vendor/bin/bdi detect drivers` télécharger le pilote dans `drivers/` après `composer require --dev dbrekelmans/bdi`. Ni `castor test`, ni `castor coverage`, ni `castor ci`, ni l'intégration continue ne la lancent. |
 | `castor test:suite <name>` | Une suite de `phpunit.dist.xml`, par son nom. |
 | `castor test:next` | Les tests sur la prochaine version de PHP, dans son image Docker. |
 | `castor test:schema` | Les migrations sur une base SQLite neuve, puis son schéma comparé au mappage Doctrine. |
