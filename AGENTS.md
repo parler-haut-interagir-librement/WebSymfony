@@ -13,6 +13,9 @@ package at run time. It keeps the usual layout of a Symfony application: no laye
 ## Tasks
 
 Every task runs through [Castor](https://castor.jolicode.com) (`castor.php`); `composer.json` holds no task script.
+`castor.php` imports the common tasks of `phil/dev-tools` (`vendor/phil/dev-tools/resources/castor/tasks.php`) and
+keeps only the template's own: the servers, `go-prod`, `go-dev`, `purge`, `load-fixtures`, `test:schema`,
+`lint:doctrine` and `check-requirements`.
 
 ```bash
 castor start                     # SQLite, migrations, fixtures, then the Symfony binary's web server
@@ -24,7 +27,7 @@ castor coverage                  # the coverage report and its threshold
 castor lint                      # every lint and the static analysis
 castor stan                      # PHPStan only
 castor fix                       # every fixer
-castor ci                        # coverage, then every lint
+castor ci                        # coverage, every lint, then test:schema
 ```
 
 ## Code style

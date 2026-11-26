@@ -13,7 +13,7 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
 /**
- * @see StaticRoutesSmokeTest
+ * @see RouteSmokeTest
  */
 // using the AsController attribute is not mandatory when extending the Symfony
 // AbstractController or when using the #Route attribute.

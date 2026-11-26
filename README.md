@@ -142,14 +142,32 @@ Everything MicroSymfony has stays: the examples, the five test suites, Castor, t
 | `castor load-fixtures` | The SQLite database reset, migrated and filled. |
 | `castor test` | Every PHPUnit suite; `--filter` and `--options` pass on to PHPUnit. |
 | `castor test:unit`, `test:integration`, `test:api`, `test:functional`, `test:e2e` | One suite. |
+| `castor test:suite <name>` | One suite of `phpunit.dist.xml`, by its name. |
 | `castor test:next` | The tests on the next PHP version, in its Docker image. |
 | `castor test:schema` | The migrations on a fresh SQLite database, then its schema compared with the Doctrine mapping. |
 | `castor coverage` | The HTML coverage report in `var/coverage/`, and its threshold. |
 | `castor infection` | Mutation testing. |
+| `castor taint` | The taint analysis of Psalm: no untrusted input reaches HTML, SQL, a shell or a file unescaped. |
 | `castor lint` | Every lint and the static analysis. |
 | `castor fix` | Rector, PHP-CS-Fixer, Twig-CS-Fixer, Biome and composer-normalize. |
-| `castor ci` | The continuous integration, locally: coverage, `test:schema`, then every lint. |
+| `castor ci` | The continuous integration, locally: coverage, every lint, then `test:schema`. |
 | `castor hooks` | The git hooks: the fast checks on the staged files before each commit. |
+
+Every task but the servers, `go-prod`, `go-dev`, `purge`, `load-fixtures`, `test:schema`, `lint:doctrine` and
+`check-requirements` comes from `phil/dev-tools`: `castor.php` imports
+`vendor/phil/dev-tools/resources/castor/tasks.php` and sets the suites, the coverage threshold of 100 % and the YAML
+paths in its `PHIL_CASTOR` constant, where `lint_also` adds `lint:doctrine` to `castor lint` and `ci_also` adds
+`test:schema` to `castor ci`. A task of the application's own is added to `castor.php` under a name of its own, and
+named in the `test_also`, `lint_also`, `fix_also` or `ci_also` setting to run with the aggregate tasks; the tasks and
+settings are described in `vendor/phil/dev-tools/doc/castor.md`.
+
+The functional suite holds [RouteSmokeTest](tests/Functional/Controller/RouteSmokeTest.php), from
+`Phil\DevTools\Testing\RouteSmokeTesting`: every GET route answers under 500, a new route included as soon as it
+exists. A route whose parameters have no default is left out, unless `smokeRouteParameters()` gives values for them.
+
+Until `phil/dev-tools` 0.2.1-alpha is published, `composer.json` resolves it from a sibling checkout of the
+`dev-tools` repository (`../dev-tools`), through a path repository copied into `vendor/`. That repository is removed
+when the template is released, and `phil/dev-tools` then comes from Packagist.
 ## Quality gates 🚦
 
 The checks come from [`phil/dev-tools`](https://packagist.org/packages/phil/dev-tools), the shared tooling of PHIL,
