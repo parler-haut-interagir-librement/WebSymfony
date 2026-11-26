@@ -1,4 +1,4 @@
-<!-- phil-dev source-sha256=8240c3b547b61a2a839aea5d920784a67b9d985127967b15b6a3eaaaecea7d2e -->
+<!-- phil-dev source-sha256=ea41e024b7a95efb4bce9112d70d556081de6d5ce37671d3d58212b5704440b0 -->
 # WebSymfony 🕸️
 
 [![Latest Version](https://img.shields.io/packagist/v/phil/websymfony.svg?style=flat-square)](https://packagist.org/packages/phil/websymfony)
@@ -147,14 +147,33 @@ Compose.
 | `castor load-fixtures` | La base de données SQLite remise à zéro, migrée et remplie. |
 | `castor test` | Toutes les suites PHPUnit ; `--filter` et `--options` sont transmis à PHPUnit. |
 | `castor test:unit`, `test:integration`, `test:api`, `test:functional`, `test:e2e` | Une seule suite. |
+| `castor test:suite <name>` | Une suite de `phpunit.dist.xml`, par son nom. |
 | `castor test:next` | Les tests sur la prochaine version de PHP, dans son image Docker. |
 | `castor test:schema` | Les migrations sur une base SQLite neuve, puis son schéma comparé au mappage Doctrine. |
 | `castor coverage` | Le rapport de couverture HTML dans `var/coverage/`, et son seuil. |
 | `castor infection` | Les tests de mutation. |
+| `castor taint` | L'analyse de souillure de Psalm : aucune entrée non fiable n'atteint du HTML, du SQL, un shell ou un fichier sans échappement. |
 | `castor lint` | Tous les *linters* et l'analyse statique. |
 | `castor fix` | Rector, PHP-CS-Fixer, Twig-CS-Fixer, Biome et composer-normalize. |
-| `castor ci` | L'intégration continue, en local : la couverture, `test:schema`, puis tous les *linters*. |
+| `castor ci` | L'intégration continue, en local : la couverture, tous les *linters*, puis `test:schema`. |
 | `castor hooks` | Les crochets git : les vérifications rapides sur les fichiers indexés avant chaque commit. |
+
+Chaque tâche, sauf les serveurs, `go-prod`, `go-dev`, `purge`, `load-fixtures`, `test:schema`, `lint:doctrine` et
+`check-requirements`, vient de `phil/dev-tools` : `castor.php` importe
+`vendor/phil/dev-tools/resources/castor/tasks.php` et règle les suites, le seuil de couverture de 100 % et les chemins
+YAML dans sa constante `PHIL_CASTOR`, où `lint_also` ajoute `lint:doctrine` à `castor lint` et `ci_also` ajoute
+`test:schema` à `castor ci`. Une tâche propre à l'application s'ajoute à `castor.php` sous un nom bien à elle, et se
+nomme dans le réglage `test_also`, `lint_also`, `fix_also` ou `ci_also` pour s'exécuter avec les tâches d'ensemble ;
+les tâches et les réglages sont décrits dans `vendor/phil/dev-tools/doc/castor.md`.
+
+La suite fonctionnelle contient [RouteSmokeTest](tests/Functional/Controller/RouteSmokeTest.php), issu de
+`Phil\DevTools\Testing\RouteSmokeTesting` : chaque route GET répond sous 500, une nouvelle route comprise dès qu'elle
+existe. Une route dont les paramètres n'ont pas de valeur par défaut est laissée de côté, sauf si `smokeRouteParameters()`
+en donne.
+
+Tant que `phil/dev-tools` 0.2.1-alpha n'est pas publié, `composer.json` le résout depuis une copie voisine du dépôt
+`dev-tools` (`../dev-tools`), par un dépôt de type chemin copié dans `vendor/`. Ce dépôt est retiré à la sortie du
+gabarit, et `phil/dev-tools` vient alors de Packagist.
 ## Portes de qualité 🚦
 
 Les vérifications viennent de [`phil/dev-tools`](https://packagist.org/packages/phil/dev-tools), l'outillage commun de
