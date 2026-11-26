@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * The sign-in page. The firewall reads the form it posts: this action only shows it, with the last user name tried
  * and the error of the last attempt.
  *
- * @see config/packages/security.php
+ * @see config/packages/security.yaml
  * @see LoginActionTest
  */
 final class LoginAction extends AbstractController

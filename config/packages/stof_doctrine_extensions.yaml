@@ -1,0 +1,7 @@
+# The Doctrine extensions in use: Timestampable sets the dates of the users.
+# See https://symfony.com/bundles/StofDoctrineExtensionsBundle/current/index.html
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            timestampable: true

@@ -1,0 +1,4 @@
+# The routes of the security layer, the sign-out one among them.
+_security_logout:
+    resource: security.route_loader
+    type: service

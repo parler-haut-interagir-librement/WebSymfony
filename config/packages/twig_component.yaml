@@ -1,0 +1,7 @@
+# Twig components, which EasyAdmin renders its pages with; the application's own go in templates/components/.
+# See https://symfony.com/bundles/ux-twig-component/current/index.html
+twig_component:
+    anonymous_template_directory: 'components/'
+    defaults:
+        # Namespace & directory for components
+        App\Twig\Components\: 'components/'
