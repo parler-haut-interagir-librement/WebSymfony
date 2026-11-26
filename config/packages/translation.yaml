@@ -1,0 +1,11 @@
+# English and French; the locale of a request comes from its Accept-Language header, English by default.
+# See https://symfony.com/doc/current/translation.html
+framework:
+    default_locale: en
+    enabled_locales: [en, fr]
+    set_locale_from_accept_language: true
+    set_content_language_from_locale: true
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - en

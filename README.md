@@ -108,14 +108,14 @@ in the SQL of the database it runs on, so it needs no change.
 | Feature | Where |
 |---|---|
 | Sign-up, sign-in and sign-out, an account page | [src/Controller/Security](src/Controller/Security), [AccountAction](src/Controller/AccountAction.php) |
-| Users with hashed passwords and roles, `ROLE_ADMIN` above `ROLE_USER` | [User](src/Entity/User.php), [security.php](config/packages/security.php) |
+| Users with hashed passwords and roles, `ROLE_ADMIN` above `ROLE_USER` | [User](src/Entity/User.php), [security.yaml](config/packages/security.yaml) |
 | An administration for `ROLE_ADMIN`, with the list of users | [src/Controller/Admin](src/Controller/Admin) |
-| Security headers and a Content Security Policy with a nonce, by NelmioSecurityBundle | [nelmio_security.php](config/packages/nelmio_security.php) |
-| Cross-origin requests on `/api/` only, by NelmioCorsBundle | [nelmio_cors.php](config/packages/nelmio_cors.php) |
+| Security headers and a Content Security Policy with a nonce, by NelmioSecurityBundle | [nelmio_security.yaml](config/packages/nelmio_security.yaml) |
+| Cross-origin requests on `/api/` only, by NelmioCorsBundle | [nelmio_cors.yaml](config/packages/nelmio_cors.yaml) |
 | A main menu built by KnpMenu | [MainMenuBuilder](src/Menu/MainMenuBuilder.php) |
-| English and French, chosen from the browser's language | [translations](translations), [translation.php](config/packages/translation.php) |
-| Dates set by the Timestampable extension | [stof_doctrine_extensions.php](config/packages/stof_doctrine_extensions.php) |
-| Errors sent to Sentry in production, when `SENTRY_DSN` is set | [sentry.php](config/packages/sentry.php) |
+| English and French, chosen from the browser's language | [translations](translations), [translation.yaml](config/packages/translation.yaml) |
+| Dates set by the Timestampable extension | [stof_doctrine_extensions.yaml](config/packages/stof_doctrine_extensions.yaml) |
+| Errors sent to Sentry in production, when `SENTRY_DSN` is set | [sentry.yaml](config/packages/sentry.yaml) |
 | The PHIL identity: logo, copyright, light and dark themes | [base.html.twig](templates/base.html.twig) |
 
 Everything MicroSymfony has stays: the examples, the five test suites, Castor, the quality gates, Docker Compose.
@@ -165,7 +165,7 @@ its reason.
 | `castor lint:php` | PHP-CS-Fixer: `@Symfony`, `@Symfony:risky`, strict types and strict comparisons. |
 | `castor lint:twig` | `lint:twig`, then the code style of the templates. |
 | `castor lint:js` | Biome on the Stimulus controllers. |
-| `castor lint:yaml`, `lint:container`, `lint:doctrine` | The YAML files, the container and the Doctrine mapping. |
+| `castor lint:yaml`, `lint:container`, `lint:doctrine` | The YAML files (`config/` among them), the container and the Doctrine mapping. |
 | `castor stan` | PHPStan at the maximum level, with type coverage at 100 %, a cognitive complexity limit and forbidden calls. |
 | `castor lint:rector` | Rector has nothing left to change. |
 | `castor lint:architecture` | Arkitect on the shape of the classes; Deptrac on the libraries `src/` may use, listed in `phil-dev.php`. |
@@ -177,10 +177,23 @@ Turbo forms are disabled in [assets/app.js](assets/app.js). To enable them for a
 attribute to it, or set `Turbo.setFormMode` to `on` to enable them everywhere. In both cases, the controller has to be
 [adapted](https://symfony.com/bundles/ux-turbo/current/index.html#3-form-response-code-changes).
 
-### PHP configuration files
+### YAML configuration files
 
-A Flex recipe can add YAML files to the project. They are loaded as they are; to convert them to PHP, follow the
-other files of `config/packages`.
+The configuration of Symfony and of the bundles is in YAML, under `config/`: `config/packages/*.yaml`, with
+`when@dev`, `when@test` and `when@prod` blocks for what changes by environment, `config/routes.yaml`,
+`config/routes/*.yaml` and `config/services.yaml`. A Flex recipe adds its files in the same format. Only
+`config/bundles.php` and `config/preload.php` stay PHP. `castor lint:yaml` checks every file of `config/`, and
+`castor lint:container` checks the container they build.
+
+```yaml
+# config/packages/security.yaml
+security:
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/account, roles: ROLE_USER }
+```
 
 ## What it doesn't ship 🙅
 

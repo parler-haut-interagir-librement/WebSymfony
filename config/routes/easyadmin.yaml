@@ -1,0 +1,4 @@
+# The routes of the EasyAdmin dashboards and their CRUD controllers.
+easyadmin:
+    resource: .
+    type: easyadmin.routes

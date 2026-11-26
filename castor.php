@@ -329,7 +329,7 @@ function lint_yaml(): int
 {
     title('lint:yaml');
 
-    return success(exit_code('bin/console lint:yaml .github compose.yaml compose.override.yaml --parse-tags'));
+    return success(exit_code('bin/console lint:yaml config .github compose.yaml compose.override.yaml --parse-tags'));
 }
 
 #[AsTask(name: 'doctrine', namespace: 'lint', description: 'Check the Doctrine mapping', aliases: ['lint-doctrine'])]
