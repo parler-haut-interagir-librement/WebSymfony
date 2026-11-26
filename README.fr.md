@@ -1,4 +1,4 @@
-<!-- phil-dev source-sha256=9669c76fdcdedf4525bb8bee3e644f2cab916de0f0906ab6de1ff8ad1c0e8a2b -->
+<!-- phil-dev source-sha256=8240c3b547b61a2a839aea5d920784a67b9d985127967b15b6a3eaaaecea7d2e -->
 # WebSymfony 🕸️
 
 [![Latest Version](https://img.shields.io/packagist/v/phil/websymfony.svg?style=flat-square)](https://packagist.org/packages/phil/websymfony)
@@ -112,14 +112,14 @@ est écrite dans le SQL de la base de données sur laquelle elle s'exécute : el
 | Fonctionnalité | Où |
 |---|---|
 | Inscription, connexion et déconnexion, une page de compte | [src/Controller/Security](src/Controller/Security), [AccountAction](src/Controller/AccountAction.php) |
-| Des utilisateurs aux mots de passe hachés et aux rôles, `ROLE_ADMIN` au-dessus de `ROLE_USER` | [User](src/Entity/User.php), [security.php](config/packages/security.php) |
+| Des utilisateurs aux mots de passe hachés et aux rôles, `ROLE_ADMIN` au-dessus de `ROLE_USER` | [User](src/Entity/User.php), [security.yaml](config/packages/security.yaml) |
 | Une administration pour `ROLE_ADMIN`, avec la liste des utilisateurs | [src/Controller/Admin](src/Controller/Admin) |
-| Des en-têtes de sécurité et une politique de sécurité du contenu avec un nonce, par NelmioSecurityBundle | [nelmio_security.php](config/packages/nelmio_security.php) |
-| Les requêtes d'autres origines sur `/api/` seulement, par NelmioCorsBundle | [nelmio_cors.php](config/packages/nelmio_cors.php) |
+| Des en-têtes de sécurité et une politique de sécurité du contenu avec un nonce, par NelmioSecurityBundle | [nelmio_security.yaml](config/packages/nelmio_security.yaml) |
+| Les requêtes d'autres origines sur `/api/` seulement, par NelmioCorsBundle | [nelmio_cors.yaml](config/packages/nelmio_cors.yaml) |
 | Un menu principal construit par KnpMenu | [MainMenuBuilder](src/Menu/MainMenuBuilder.php) |
-| L'anglais et le français, choisis d'après la langue du navigateur | [translations](translations), [translation.php](config/packages/translation.php) |
-| Des dates posées par l'extension Timestampable | [stof_doctrine_extensions.php](config/packages/stof_doctrine_extensions.php) |
-| Les erreurs envoyées à Sentry en production, quand `SENTRY_DSN` est défini | [sentry.php](config/packages/sentry.php) |
+| L'anglais et le français, choisis d'après la langue du navigateur | [translations](translations), [translation.yaml](config/packages/translation.yaml) |
+| Des dates posées par l'extension Timestampable | [stof_doctrine_extensions.yaml](config/packages/stof_doctrine_extensions.yaml) |
+| Les erreurs envoyées à Sentry en production, quand `SENTRY_DSN` est défini | [sentry.yaml](config/packages/sentry.yaml) |
 | L'identité PHIL : logo, droit d'auteur, thèmes clair et sombre | [base.html.twig](templates/base.html.twig) |
 
 Tout ce que MicroSymfony contient reste : les exemples, les cinq suites de tests, Castor, les portes de qualité, Docker
@@ -170,7 +170,7 @@ l'application, chaque exception avec sa raison.
 | `castor lint:php` | PHP-CS-Fixer : `@Symfony`, `@Symfony:risky`, types stricts et comparaisons strictes. |
 | `castor lint:twig` | `lint:twig`, puis le style de code des gabarits. |
 | `castor lint:js` | Biome sur les contrôleurs Stimulus. |
-| `castor lint:yaml`, `lint:container`, `lint:doctrine` | Les fichiers YAML, le conteneur et le mappage Doctrine. |
+| `castor lint:yaml`, `lint:container`, `lint:doctrine` | Les fichiers YAML (`config/` compris), le conteneur et le mappage Doctrine. |
 | `castor stan` | PHPStan au niveau maximal, avec une couverture des types de 100 %, une limite de complexité cognitive et des appels interdits. |
 | `castor lint:rector` | Rector n'a plus rien à changer. |
 | `castor lint:architecture` | Arkitect sur la forme des classes ; Deptrac sur les bibliothèques que `src/` peut utiliser, listées dans `phil-dev.php`. |
@@ -183,10 +183,23 @@ ajoutez-lui l'attribut `data-turbo="true"`, ou donnez à `Turbo.setFormMode` la 
 Dans les deux cas, le contrôleur doit être
 [adapté](https://symfony.com/bundles/ux-turbo/current/index.html#3-form-response-code-changes).
 
-### Fichiers de configuration PHP
+### Fichiers de configuration YAML
 
-Une recette Flex peut ajouter des fichiers YAML au projet. Ils sont chargés tels quels ; pour les convertir en PHP,
-suivez les autres fichiers de `config/packages`.
+La configuration de Symfony et des bundles est en YAML, sous `config/` : `config/packages/*.yaml`, avec des blocs
+`when@dev`, `when@test` et `when@prod` pour ce qui change selon l'environnement, `config/routes.yaml`,
+`config/routes/*.yaml` et `config/services.yaml`. Une recette Flex ajoute ses fichiers dans le même format. Seuls
+`config/bundles.php` et `config/preload.php` restent en PHP. `castor lint:yaml` vérifie chaque fichier de `config/`, et
+`castor lint:container` vérifie le conteneur qu'ils construisent.
+
+```yaml
+# config/packages/security.yaml
+security:
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/account, roles: ROLE_USER }
+```
 
 ## Ce qu'il ne livre pas 🙅
 
