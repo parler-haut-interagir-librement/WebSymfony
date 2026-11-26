@@ -1,4 +1,4 @@
-<!-- phil-dev source-sha256=ea41e024b7a95efb4bce9112d70d556081de6d5ce37671d3d58212b5704440b0 -->
+<!-- phil-dev source-sha256=68ebd82c82ebac7f590cc79c4f4e70df36486b411514b6bf252b272b2d47b39f -->
 # WebSymfony 🕸️
 
 [![Latest Version](https://img.shields.io/packagist/v/phil/websymfony.svg?style=flat-square)](https://packagist.org/packages/phil/websymfony)
@@ -171,9 +171,6 @@ La suite fonctionnelle contient [RouteSmokeTest](tests/Functional/Controller/Rou
 existe. Une route dont les paramètres n'ont pas de valeur par défaut est laissée de côté, sauf si `smokeRouteParameters()`
 en donne.
 
-Tant que `phil/dev-tools` 0.2.1-alpha n'est pas publié, `composer.json` le résout depuis une copie voisine du dépôt
-`dev-tools` (`../dev-tools`), par un dépôt de type chemin copié dans `vendor/`. Ce dépôt est retiré à la sortie du
-gabarit, et `phil/dev-tools` vient alors de Packagist.
 ## Portes de qualité 🚦
 
 Les vérifications viennent de [`phil/dev-tools`](https://packagist.org/packages/phil/dev-tools), l'outillage commun de

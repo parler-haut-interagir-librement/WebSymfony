@@ -165,9 +165,6 @@ The functional suite holds [RouteSmokeTest](tests/Functional/Controller/RouteSmo
 `Phil\DevTools\Testing\RouteSmokeTesting`: every GET route answers under 500, a new route included as soon as it
 exists. A route whose parameters have no default is left out, unless `smokeRouteParameters()` gives values for them.
 
-Until `phil/dev-tools` 0.2.1-alpha is published, `composer.json` resolves it from a sibling checkout of the
-`dev-tools` repository (`../dev-tools`), through a path repository copied into `vendor/`. That repository is removed
-when the template is released, and `phil/dev-tools` then comes from Packagist.
 ## Quality gates 🚦
 
 The checks come from [`phil/dev-tools`](https://packagist.org/packages/phil/dev-tools), the shared tooling of PHIL,
